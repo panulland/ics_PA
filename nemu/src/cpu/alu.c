@@ -1,7 +1,7 @@
 #include "cpu/cpu.h"
 
 void set_CF_add(uint32_t result,uint32_t src,size_t data_size){
-	reuslt=sign_ext(result&(0xFFFFFFFE>>(32-data_size)),data_size);
+	result=sign_ext(result&(0xFFFFFFFE>>(32-data_size)),data_size);
 	src=sign_ext(src & (0xFFFFFFFE>>(32-data_size)),data_size);
 	cpu.eflags.CF=result<src;
 }
