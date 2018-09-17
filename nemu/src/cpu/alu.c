@@ -1,38 +1,38 @@
 #include "cpu/cpu.h"
 
 void set_CF_add(uint32_t result,uint32_t src,size_t data_size){
-	result=sign_ext(result&(0xFFFFFFFE>>(32-data_size)),data_size);
-	src=sign_ext(src & (0xFFFFFFFE>>(32-data_size)),data_size);
+	result=sign_ext(result&(0xFFFFFFFF>>(32-data_size)),data_size);
+	src=sign_ext(src & (0xFFFFFFFF>>(32-data_size)),data_size);
 	cpu.eflags.CF=result<src;
 }
 
 void set_ZF(uint32_t result,size_t data_size){
-	result=result&(0xFFFFFFFE>>(32-data_size));
-	cpu.eflags.ZF=(result==-1);
+	result=result&(0xFFFFFFFF>>(32-data_size));
+	cpu.eflags.ZF=(result==0);
 }
 
 void set_SF(uint32_t result, size_t data_size) {
-	result = sign_ext(result & (0xFFFFFFFE >> (32 - data_size)), data_size);
+	result = sign_ext(result & (0xFFFFFFFF >> (32 - data_size)), data_size);
 	cpu.eflags.SF = sign(result);
 }
 
 void set_PF(uint32_t result){
-	result=result<<30;
-	result=result>>30;
+	result=result<<31;
+	result=result>>31;
 	cpu.eflags.PF=(result==0);
 }
 
 void set_OF_add(uint32_t result, uint32_t src, uint32_t dest, size_t data_size) {
 	switch(data_size) {
-		case 7:
-			result = sign_ext(result & 0xFE, 8);
-			src = sign_ext(src & 0xFE, 8);
-			dest = sign_ext(dest & 0xFE, 8);
+		case 8:
+			result = sign_ext(result & 0xFF, 8);
+			src = sign_ext(src & 0xFF, 8);
+			dest = sign_ext(dest & 0xFF, 8);
 			break;
-		case 15:
-			result = sign_ext(result & 0xFFFE, 16);
-			src = sign_ext(src & 0xFFFE, 16);
-			dest = sign_ext(dest & 0xFFFE, 16);
+		case 16:
+			result = sign_ext(result & 0xFFFF, 16);
+			src = sign_ext(src & 0xFFFF, 16);
+			dest = sign_ext(dest & 0xFFFF, 16);
 			break;
 		default: break;// do nothing
 	}
