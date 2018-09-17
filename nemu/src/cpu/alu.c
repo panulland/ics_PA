@@ -31,6 +31,7 @@ void set_SF(uint32_t result, size_t data_size) {
 
 void set_PF(uint32_t result){
 	result=result<<31;
+	result=result>>31;
 	cpu.eflags.PF=(result==1);
 }
 
