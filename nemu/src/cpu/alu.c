@@ -17,12 +17,11 @@ void set_SF(uint32_t result, size_t data_size) {
 }
 
 void set_PF(uint32_t result){
-	int n;
+	int n=0;
 	uint32_t r;
 	for(int i=1;i<9;i++){
 		r=result<<(32-i);
 		r=r>>31;
-		printf("%d",r);
 		if(r==1)
 			n++;
 	}
