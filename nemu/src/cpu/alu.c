@@ -17,10 +17,15 @@ void set_SF(uint32_t result, size_t data_size) {
 }
 
 void set_PF(uint32_t result){
-
-	result=result<<31;
-	result=result>>31;
-	cpu.eflags.PF=(result==0);
+	int n;
+	uint32_t r;
+	for(int i=1;i<9;i++){
+		r=result<<(32-i);
+		r=r>>31;
+		if(r==1)
+			n++;
+	}
+	cpu.eflags.PF=(n==0||n==2||n==4||n==6||n==8);
 }
 
 void set_OF_add(uint32_t result, uint32_t src, uint32_t dest, size_t data_size) {
