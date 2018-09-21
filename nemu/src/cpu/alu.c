@@ -150,9 +150,7 @@ uint64_t alu_mul(uint32_t src, uint32_t dest, size_t data_size) {
 	return __ref_alu_mul(src, dest, data_size);
 #else
 	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
-	assert(0);
-	return 0;
-#endif
+	assert
 }
 
 int64_t alu_imul(int32_t src, int32_t dest, size_t data_size) {
@@ -206,13 +204,15 @@ int32_t alu_imod(int64_t src, int64_t dest) {
 }
 
 uint32_t alu_and(uint32_t src, uint32_t dest, size_t data_size) {
-#ifdef NEMU_REF_ALU
-	return __ref_alu_and(src, dest, data_size);
-#else
-	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
-	assert(0);
-	return 0;
-#endif
+	uint32_t res = 0;
+	res = src & dest;
+
+	cpu.eflags.CF = 0;
+	cpu.eflags.OF = 0;
+	set_PF(res);
+	set_ZF(res,data_size);
+	set_SF(res,data_size);
+	return res & (0xFFFFFFFF >> (32 - data_size));
 }
 
 uint32_t alu_xor(uint32_t src, uint32_t dest, size_t data_size) {
