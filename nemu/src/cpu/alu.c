@@ -148,7 +148,7 @@ uint32_t alu_sbb(uint32_t src, uint32_t dest, size_t data_size) {
 uint64_t alu_mul(uint32_t src, uint32_t dest, size_t data_size) {
 	uint64_t src0=sign_ext_64(src,data_size);
 	uint64_t dest0=sign_ext_64(dest,data_size);
-	int x=0x0000ffff;
+	int x=0xffffffff;
 	uint64_t a=sign_ext_64(x,data_size);
 	printf("%llx\n",a);
 	printf("%llx\n",src0);
