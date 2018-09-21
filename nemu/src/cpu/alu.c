@@ -160,10 +160,10 @@ uint64_t alu_mul(uint32_t src, uint32_t dest, size_t data_size) {
 		cpu.eflags.OF=0;
 	}
 	else{
-		cpu.eflags.CF=0;
-		cpu.eflags.OF=0;
+		cpu.eflags.CF=1;
+		cpu.eflags.OF=1;
 	}
-	return res&(0xFFFFFFFF-(32-data_size));
+	return res&(0xFFFFFFFF>>(32-data_size));
 }
 
 int64_t alu_imul(int32_t src, int32_t dest, size_t data_size) {
