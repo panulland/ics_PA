@@ -244,8 +244,9 @@ uint32_t alu_or(uint32_t src, uint32_t dest, size_t data_size) {
 uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size) {
 	uint32_t res = dest;
 	for(int i = 0;i<src;i++){
-		cpu.eflags.CF = res << (32 - data_size) >> 31;
+		cpu.eflags.CF = dest << (32 - data_size) >> 31;
 		res = res * 2;
+		dest = res;
 	}
 
 	set_PF(res);
@@ -257,8 +258,9 @@ uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size) {
 uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size) {
 	uint32_t res = dest;
 	for(int i=0;i<src;i++){
-		cpu.eflags.CF = res << 31 >> 31;
-		res = res >> 1;
+		cpu.eflags.CF = dest << 31 >> 31;
+		res = res / 2;
+		dest = res;
 	}
 
 	set_PF(res);
