@@ -570,8 +570,8 @@ void alu_test_mul() {
 		for(j = 0 ; j < n ; j++) {
 			a = input[i];
 			b = input[j];
-printf("%llx\n",b);
-printf("%llx\n",a);
+printf("%x\n",b);
+printf("%x\n",a);
 			res = alu_mul(b, a, 32);
 			asm (	"mull %%ecx;"
 				"pushf;"
