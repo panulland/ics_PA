@@ -241,17 +241,13 @@ uint32_t alu_or(uint32_t src, uint32_t dest, size_t data_size) {
 	return res & (0xFFFFFFFF >> (32 - data_size));
 }
 
-void set_CF_shl(uint32_t result, size_t data_size){
-	result = result << (31 - data_size);
-	result = result >> 31;
-	cpu.eflags.CF = result;
-}
-
 uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size) {
-	uint32_t res = 0;
-	res = dest << src;
+	uint32_t res = dest;
+	for(int i = 0;i<src;i++){
+		cpu.eflags.CF = res << (32 - data_size) >> 31;
+		res = res * 2;
+	}
 
-	set_CF_shl(res,data_size);
 	set_PF(res);
 	set_ZF(res,data_size);
 	set_SF(res,data_size);
