@@ -146,6 +146,8 @@ uint32_t alu_sbb(uint32_t src, uint32_t dest, size_t data_size) {
 
 
 uint64_t alu_mul(uint32_t src, uint32_t dest, size_t data_size) {
+	src=sign_ext_64(src,data_size);
+	dest=sign_ext_64(dest,data_size);
 	uint64_t res = 0;
 	res = dest * src;
 	uint64_t r=res;
@@ -163,7 +165,7 @@ uint64_t alu_mul(uint32_t src, uint32_t dest, size_t data_size) {
 		cpu.eflags.CF=1;
 		cpu.eflags.OF=1;
 	}
-	return res&(0xFFFFFFFFFFFFFFFF>>(64-data_size));
+	return res & (0xFFFFFFFFFFFFFFFF >> (64-data_size));
 } 
 
 int64_t alu_imul(int32_t src, int32_t dest, size_t data_size) {
