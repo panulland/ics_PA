@@ -244,7 +244,7 @@ uint32_t alu_or(uint32_t src, uint32_t dest, size_t data_size) {
 void set_CF_shl(uint32_t result, size_t data_size){
 	result = result << (31 - data_size);
 	result = result >> 31;
-	cpu.eflags.CF = result==1;
+	cpu.eflags.CF = result;
 }
 
 uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size) {
