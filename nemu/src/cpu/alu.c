@@ -163,7 +163,7 @@ uint64_t alu_mul(uint32_t src, uint32_t dest, size_t data_size) {
 		cpu.eflags.CF=1;
 		cpu.eflags.OF=1;
 	}
-	return res & (0xFFFFFFFFFFFFFFFF >> (64 - 2*data_size));
+	return res;
 } 
 
 int64_t alu_imul(int32_t src, int32_t dest, size_t data_size) {
