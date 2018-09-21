@@ -257,7 +257,7 @@ uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size) {
 
 uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size) {
 	uint32_t res = dest;
-	for(src;src!=0;src--){
+	for(;src!=0;src--){
 		cpu.eflags.CF = dest << 31 >> 31;
 		res = res / 2;
 		dest = res;
