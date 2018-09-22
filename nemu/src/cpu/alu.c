@@ -174,7 +174,7 @@ int64_t alu_imul(int32_t src, int32_t dest, size_t data_size) {
 	int64_t res = 0;
 	res = src0 * dest0;
 
-	return res & (0xFFFFFFFFFFFFFFFF >> (64 - 2*data_size)):
+	return res & (0xFFFFFFFFFFFFFFFF >> (64 - 2*data_size));
 }
 
 uint32_t alu_div(uint64_t src, uint64_t dest, size_t data_size) {
