@@ -230,8 +230,8 @@ uint32_t internal_float_mul(uint32_t b, uint32_t a) {
 
 
 	uint64_t sig_a, sig_b, sig_res;
-	int a = 0;
-	int b = 0;
+	int flaga = 0;
+	int flagb = 0;
 	sig_a = fa.fraction;
 	if(fa.exponent != 0) sig_a |= 0x800000; // the hidden 1
 	else flaga = 23;
