@@ -43,8 +43,8 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		if(exp < 0) { 
 			/* TODO: assign the number to zero */
 			sig_grs = 0;
-			printf("%d+++++\n",exp);
 			exp = 0;
+			printf("%d",exp);
 			overflow = true;
 		}
 	} else if(((sig_grs >> (23 + 3)) == 0) && exp > 0) {
