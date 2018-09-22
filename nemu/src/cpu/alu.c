@@ -177,7 +177,7 @@ int64_t alu_imul(int32_t src, int32_t dest, size_t data_size) {
 		src0 = src0 | 0x8000000000000000;
 	if(d)
 		dest0 = dest0 | 0x8000000000000000;
-	printf("%llx\n",src0);
+	printf("%x\n%llx\n",src,src0);
 	int64_t res = 0;
 	res = src0 * dest0;
 
