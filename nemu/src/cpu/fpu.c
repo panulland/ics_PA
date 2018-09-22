@@ -69,7 +69,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			if(sig_grs % 2)
 				sig_grs ++;
 		}
-
+		if(
 	}
 
 
@@ -130,8 +130,6 @@ uint32_t internal_float_add(uint32_t b, uint32_t a) {
 
 	/* TODO: shift = ? */
 	shift = (fb.exponent == 0 ? fb.exponent + 1 : fb.exponent) - (fa.exponent == 0 ? fa.exponent + 1 : fa.exponent);
-	if(shift<0)
-		shift=-shift;
 	assert(shift >= 0);
 
 	sig_a = (sig_a << 3); // guard, round, sticky
