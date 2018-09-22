@@ -32,6 +32,7 @@ void fpu_test_add() {
 		if(a.exponent == 0xff || b.exponent == 0xff) continue;
 		res.fval = a.fval + b.fval;
 		res_fpu.val = internal_float_add(b.val, a.val);
+if(res_fpu.val!=res.val;
 printf("======\n%x\n%x\n=====\n",res_fpu.val,res.val);
 		assert(res_fpu.val == res.val);
 	}
