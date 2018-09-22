@@ -64,7 +64,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		// two denormals result in a normal
 		exp++;
 	}
-printf("%llx____\n",sig_grs);
+
 	if(!overflow) {
 		/* TODO: round up and remove the GRS bits */
 		if((sig_grs % 8) < 4)
@@ -82,7 +82,7 @@ printf("%llx____\n",sig_grs);
 		}
 		
 	}
-
+printf("%llx&&&&&&\n",sig_grs);
 
 	FLOAT f;
 	f.sign = sign;
