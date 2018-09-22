@@ -171,6 +171,7 @@ uint64_t alu_mul(uint32_t src, uint32_t dest, size_t data_size) {
 int64_t alu_imul(int32_t src, int32_t dest, size_t data_size) {
 	int32_t s = src >> 31;
 	int32_t d = dest >> 31;
+	printf("%d\n%d\n",s,d);
 	int64_t src0 = sign_ext_64(src,data_size);
 	int64_t dest0 = sign_ext_64(dest,data_size);
 	int64_t res = 0;
