@@ -29,7 +29,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		if(exp >= 0xff) {
 			/* TODO: assign the number to infinity */
 			sig_grs = 0;
-
+			exp = 0xFF;
 			overflow = true;
 		}
 		if(exp == 0) {
@@ -43,6 +43,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		if(exp < 0) { 
 			/* TODO: assign the number to zero */
 			sig_grs = 0;
+			exp = 0;
 			overflow = true;
 		}
 	} else if(((sig_grs >> (23 + 3)) == 0) && exp > 0) {
