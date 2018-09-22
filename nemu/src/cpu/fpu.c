@@ -76,7 +76,6 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			if(sig_grs % 2)
 				sig_grs ++;
 		}
-		printf("%llx*******\n",sig_grs);
 		if((sig_grs >> 23) > 1){
 			sig_grs = sig_grs << 3;
 			return internal_normalize(sign,exp,sig_grs);
@@ -247,6 +246,7 @@ uint32_t internal_float_mul(uint32_t b, uint32_t a) {
 	printf("=====%llx=====%llx====\n",sig_a,sig_b);
 	printf("++++++%x++++%x+++%llx+++++\n",b,a,sig_res);
 	sig_res = sig_res << 3;
+	printf("******%x****%llx***\n"exp_res,sig_res);
 	return internal_normalize(f.sign, exp_res, sig_res);
 }
 
