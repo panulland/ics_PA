@@ -47,7 +47,6 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			/* TODO: shift left */
 			sig_grs = sig_grs << 1;
 			exp--;
-			printf("%x------\n",exp);
 		}
 		if(exp == 0) {
 			// denormal
@@ -69,6 +68,9 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			sig_grs = sig_grs >> 3;
 			if(sig_grs % 2)
 				sig_grs ++;
+		}
+		if(sig_grs>>(23+3)>1){
+			internal_normalize(sign,exp.sig_grs);
 		}
 		
 	}
