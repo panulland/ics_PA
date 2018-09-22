@@ -234,10 +234,10 @@ uint32_t internal_float_mul(uint32_t b, uint32_t a) {
 	int b = 0;
 	sig_a = fa.fraction;
 	if(fa.exponent != 0) sig_a |= 0x800000; // the hidden 1
-	else a = 23;
+	else flaga = 23;
 	sig_b = fb.fraction;
 	if(fb.exponent != 0) sig_b |= 0x800000; // the hidden 1
-	else b = 23;
+	else flagb = 23;
 
 	if(fa.exponent == 0) fa.exponent ++;
 	if(fb.exponent == 0) fb.exponent ++;
@@ -246,7 +246,7 @@ uint32_t internal_float_mul(uint32_t b, uint32_t a) {
 	uint32_t exp_res = 0;
 
 	/* TODO: exp_res = ? leave space for GRS bits. */
-	exp_res = fa.exponent + fb.exponent - 127 - a - b;
+	exp_res = fa.exponent + fb.exponent - 127 - flaga - flagb;
 	sig_res = sig_res << 3;
 	return internal_normalize(f.sign, exp_res, sig_res);
 }
