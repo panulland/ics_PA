@@ -60,16 +60,16 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 
 	if(!overflow) {
 		/* TODO: round up and remove the GRS bits */
-		if(sig_grs<<61>>61 < 4)
+		if((sig_grs<<61>>61) < 4)
 			sig_grs = sig_grs>>3;
-		else if(sig_grs<<61>>61 > 4)
+		else if((sig_grs<<61>>61) > 4)
 			sig_grs = (sig_grs >> 3) + 1;
 		else{
 			sig_grs = sig_grs >> 3;
 			if(sig_grs % 2)
 				sig_grs ++;
 		}
-		if((sig_grs>>(23+3))>1){
+		if((sig_grs >> (23+3)) > 1){
 			printf("%llx======\n",sig_grs);
 			return internal_normalize(sign,exp,sig_grs);
 		}
@@ -158,7 +158,6 @@ uint32_t internal_float_add(uint32_t b, uint32_t a) {
 	else { f.sign = 0; }
 
 	uint32_t exp_res = fb.exponent;
-	printf("%x\n",exp_res);
 	return internal_normalize(f.sign, exp_res, sig_res);
 }
 
