@@ -195,7 +195,7 @@ int32_t alu_idiv(int64_t src, int64_t dest, size_t data_size) {
 	if(res < 0)
 		return res | (0xFFFFFFFF << (data_size - 1));
 	else
-		return res & (0xFFFFFFFF >> (33 - data_size)):	
+		return res & (0xFFFFFFFF >> (33 - data_size));	
 }
 
 uint32_t alu_mod(uint64_t src, uint64_t dest) {
