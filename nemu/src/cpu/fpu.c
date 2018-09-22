@@ -67,6 +67,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			sig_grs = (sig_grs >> 3) + 1;
 		else{
 			sig_grs = sig_grs >> 3;
+			printf("*****%llx\n",sig_grs);
 			if(sig_grs % 2)
 				sig_grs ++;
 		}
