@@ -44,7 +44,6 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			/* TODO: assign the number to zero */
 			sig_grs = 0;
 			exp = 0;
-			printf("%d",exp);
 			overflow = true;
 		}
 	} else if(((sig_grs >> (23 + 3)) == 0) && exp > 0) {
@@ -65,7 +64,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		// two denormals result in a normal
 		exp++;
 	}
-
+printf("%llx____\n",sig_grs);
 	if(!overflow) {
 		/* TODO: round up and remove the GRS bits */
 		if((sig_grs % 8) < 4)
