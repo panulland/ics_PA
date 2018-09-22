@@ -63,7 +63,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		if(sig_grs<<61>>61 < 4)
 			sig_grs = sig_grs>>3;
 		else if(sig_grs<<61>>61 > 4)
-			sig_grs = sig_grs >> 3 + 1;
+			sig_grs = (sig_grs >> 3) + 1;
 		else{
 			sig_grs = sig_grs >> 3;
 			if(sig_grs % 2)
@@ -128,7 +128,7 @@ uint32_t internal_float_add(uint32_t b, uint32_t a) {
 	uint32_t shift = 0;
 
 	/* TODO: shift = ? */
-	shift = (fb.exponent == 0 ? fb.exponent + 1 : fb.exponent) - (fa.exponent == 0 ? fa.exponent + 1 : fa.exponent)
+	shift = (fb.exponent == 0 ? fb.exponent + 1 : fb.exponent) - (fa.exponent == 0 ? fa.exponent + 1 : fa.exponent);
 	if(shift<0)
 		shift=-shift;
 	assert(shift >= 0);
