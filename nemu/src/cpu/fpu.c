@@ -70,7 +70,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 				sig_grs ++;
 		}
 		if(sig_grs>>(23+3)>1){
-			return internal_normalize(sign,exp.sig_grs);
+			return internal_normalize(sign,exp,sig_grs);
 		}
 		
 	}
