@@ -59,6 +59,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 	}
 
 	if(!overflow) {
+		printf("%llx*****\n",sig_grs);
 		/* TODO: round up and remove the GRS bits */
 		if((sig_grs % 8) < 4)
 			sig_grs = sig_grs>>3;
