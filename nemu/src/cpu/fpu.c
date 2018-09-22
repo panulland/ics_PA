@@ -12,6 +12,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 	// normalization
 	bool overflow = false; // true if the result is INFINITY or 0 during normalize
 	uint32_t sticky = 0;
+printf("%d\n",exp);
 	if((sig_grs >> (23 + 3)) > 1 || exp < 0) {
 		// normalize toward right
 		while((((sig_grs >> (23 + 3)) > 1) && exp < 0xff) // condition 1
