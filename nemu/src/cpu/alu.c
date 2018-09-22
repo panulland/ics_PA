@@ -171,12 +171,12 @@ uint64_t alu_mul(uint32_t src, uint32_t dest, size_t data_size) {
 int64_t alu_imul(int32_t src, int32_t dest, size_t data_size) {
 	uint32_t s = src >> 31;
 	uint32_t d = dest >> 31;
-	int64_t src0 = sign_ext_64(src,data_size)&(0xFFFFFFFFFFFFFFFF>>(64-data_size));
-	int64_t dest0 = sign_ext_64(dest,data_size)&(0xFFFFFFFFFFFFFFFF>>(64-data_size));
-	if(s)
-		src0 = src0 | 0x8000000000000000;
-	if(d)
-		dest0 = dest0 | 0x8000000000000000;
+	int64_t src0 = sign_ext_64(src,data_size);
+	int64_t dest0 = sign_ext_64(dest,data_size);
+	if(s==0)
+		src0 = src0 & 0x7FFFFFFFFFFFFFFF;
+	if(d==0)
+		dest0 = dest0 & 0x7FFFFFFFFFFFFFFF;
 	printf("%x\n%llx\n",src,src0);
 	int64_t res = 0;
 	res = src0 * dest0;
