@@ -200,7 +200,7 @@ uint32_t alu_mod(uint64_t src, uint64_t dest) {
 	uint32_t res = 0;
 	res = dest % src;
 
-	return res & (0xFFFFFFFF >> (32 - data_size));
+	return res;
 }
 
 int32_t alu_imod(int64_t src, int64_t dest) {
