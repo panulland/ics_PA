@@ -18,7 +18,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			|| // or
 			(sig_grs > 0x04 && exp < 0) // condition 2
 			) {
-printf("****%d*****",exp);
+
 			/* TODO: shift right, pay attention to sticky bit*/
 			sticky = sticky | (sig_grs & 0x1);
 			sig_grs = sig_grs >> 1;
