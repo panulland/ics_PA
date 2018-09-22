@@ -24,6 +24,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			sig_grs = sig_grs >> 1;
 			sig_grs |= sticky;
 			exp++;
+			printf("%d^^^^^^^\n",exp);
 		}
 
 		if(exp >= 0xff) {
@@ -66,7 +67,6 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 	}
 
 	if(!overflow) {
-		printf("$$$$$$$$$$");
 		/* TODO: round up and remove the GRS bits */
 		if((sig_grs % 8) < 4)
 			sig_grs = sig_grs>>3;
