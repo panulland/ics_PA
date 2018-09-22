@@ -246,7 +246,7 @@ uint32_t internal_float_mul(uint32_t b, uint32_t a) {
 	printf("=====%llx=====%llx====\n",sig_a,sig_b);
 	printf("++++++%x++++%x+++%llx+++++\n",b,a,sig_res);
 	sig_res = sig_res << 3;
-	printf("******%x****%llx***\n"exp_res,sig_res);
+	printf("******%x****%llx***\n",exp_res,sig_res);
 	return internal_normalize(f.sign, exp_res, sig_res);
 }
 
