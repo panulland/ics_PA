@@ -20,7 +20,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			) {
 
 			/* TODO: shift right, pay attention to sticky bit*/
-			sig_grs >> 1;
+			sig_grs = sig_grs >> 1;
 			exp++;
 		}
 
@@ -34,7 +34,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			// we have a denormal here, the exponent is 0, but means 2^-126, 
 			// as a result, the significand should shift right once more
 			/* TODO: shift right, pay attention to sticky bit*/
-			sig_grs >> 1;
+			sig_grs = sig_grs >> 1;
 		}
 		if(exp < 0) { 
 			/* TODO: assign the number to zero */
@@ -45,13 +45,13 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		// normalize toward left
 		while(((sig_grs >> (23 + 3)) == 0) && exp > 0) {
 			/* TODO: shift left */
-			sig_grs << 1;
+			sig_grs = sig_grs << 1;
 			exp--;
 		}
 		if(exp == 0) {
 			// denormal
 			/* TODO: shift right, pay attention to sticky bit*/
-			sig_grs >> 1;
+			sig_grs = sig_grs >> 1;
 		}
 	} else if(exp == 0 && sig_grs >> (23 + 3) == 1) {
 		// two denormals result in a normal
@@ -61,7 +61,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 	if(!overflow) {
 		/* TODO: round up and remove the GRS bits */
 		if(sig_grs<<61>>61 < 4)
-			sig_grs>>3;
+			sig_grs = sig_grs>>3;
 		else if(sig_grs<<61>>61 > 4)
 			sig_grs = sig_grs >> 3 + 1;
 		else{
