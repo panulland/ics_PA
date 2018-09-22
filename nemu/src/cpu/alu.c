@@ -177,7 +177,7 @@ int64_t alu_imul(int32_t src, int32_t dest, size_t data_size) {
 	int64_t dest0 = sign_ext_64(dest,data_size);
 	int64_t res = 0;
 	res = src0 * dest0;
-	printf("%llx\n",res);
+	printf("%llx\n======\n",res);
 
 	if((s&&!d)||(!s&&d))
 		return res | (0xFFFFFFFFFFFFFFFF << (2*data_size - 1));
