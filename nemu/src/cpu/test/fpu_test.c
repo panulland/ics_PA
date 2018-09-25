@@ -134,7 +134,7 @@ printf("%x\n",internal_float_mul(0x00000001,0x00000001));
 			//printf("res_fpu sign %x, exp %x, %d, sig %x\n", res_fpu.sign, res_fpu.exponent, res_fpu.exponent, res_fpu.significand);
 			assert(res_fpu.val == res.val);
 		}
-	}
+	}*/
 
 	srand(time(0));
 	for(i = 0 ; i < 1000000 ; i++) {
@@ -146,7 +146,7 @@ printf("%x\n",internal_float_mul(0x00000001,0x00000001));
 		assert(res_fpu.val == res.val);
 	}
 	printf("fpu_test_mul()  \e[0;32mpass\e[0m\n");
-}*/
+}
 
 void init_fpu_test() {
 	p_zero.sign = 0; p_zero.exponent = 0; p_zero.fraction = 0;
