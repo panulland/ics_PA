@@ -559,9 +559,7 @@ void alu_test_imul() {
 }
 
 void alu_test_mul() {
-printf("%llx\n",sign_ext_64(0x0001,16));
-printf("%llx\n",sign_ext_64(0xffffffff,32));
-/*	uint64_t res, temp_a, temp_d;
+	uint64_t res, temp_a, temp_d;
 	uint32_t a, b, res_asm_a, res_asm_d, res_eflags;
 	TEST_EFLAGS test_eflags;
 	int input[] = {0xffffffff,-3, -2, -1, 0, 1, 2, 4, 5, 0xefffffff};
@@ -681,7 +679,7 @@ printf("%llx\n",sign_ext_64(0xffffffff,32));
 	}
 
 	printf("alu_test_mul()  \e[0;32mpass\e[0m\n");
-	if( get_ref() ) printf("\e[0;31mYou have used reference implementations, DO NOT submit this version!\e[0m\n");*/
+	if( get_ref() ) printf("\e[0;31mYou have used reference implementations, DO NOT submit this version!\e[0m\n");
 }
 
 void alu_test_idiv() {
