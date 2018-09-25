@@ -21,6 +21,8 @@ void fpu_test_add() {
 			res.fval = a.fval + b.fval;
 			res_fpu.val = internal_float_add(b.val, a.val);
 			//printf("float add a = %f, b = %f, ua = %x, ub = %x, res = %x, res_fpu = %x, res = %f, res_fpu = %f\n", a.fval, b.fval, a.val, b.val, res.val, res_fpu.val, res.fval, res_fpu.fval);
+if(res.val==0)
+printf("%x %x\n",a.val,b.val);
 			assert(res_fpu.val == res.val);
 		}
 	}
@@ -130,9 +132,6 @@ void fpu_test_mul() {
 			//printf("b       sign %x, exp %x, %d, sig %x\n", b.sign, b.exponent, b.exponent, b.significand);
 			//printf("res     sign %x, exp %x, %d, sig %x\n", res.sign, res.exponent, res.exponent, res.significand);
 			//printf("res_fpu sign %x, exp %x, %d, sig %x\n", res_fpu.sign, res_fpu.exponent, res_fpu.exponent, res_fpu.significand);
-if(res_fpu.val==0){
-printf("%x %x\n",a.val,b.val);
-}
 			assert(res_fpu.val == res.val);
 		}
 	}
