@@ -113,8 +113,7 @@ void fpu_test_div() {
 void fpu_test_mul() {
 
 printf("%x\n",internal_float_mul(0x00000001,0x00000001));
-system("pause");
-	float input[] = {
+/*	float input[] = {
 		p_zero.fval, n_zero.fval, p_inf.fval, n_inf.fval, denorm_1.fval, denorm_2.fval, big_1.fval, big_2.fval,
 		p_nan.fval, n_nan.fval, denorm_3.fval, small_1.fval, small_2.fval,
 		10000000, 1.2, 1.1, 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, -0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9, -1, -10000000};
@@ -146,7 +145,7 @@ system("pause");
 		res_fpu.val = internal_float_mul(b.val, a.val);
 		assert(res_fpu.val == res.val);
 	}
-	printf("fpu_test_mul()  \e[0;32mpass\e[0m\n");
+	printf("fpu_test_mul()  \e[0;32mpass\e[0m\n");*/
 }
 
 void init_fpu_test() {
