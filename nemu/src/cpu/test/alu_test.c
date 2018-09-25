@@ -559,8 +559,8 @@ void alu_test_imul() {
 }
 
 void alu_test_mul() {
-sign_ext_64(0x00000001);
-sign_ext_64(0xffffffff);
+sign_ext_64(0x00000001,16);
+sign_ext_64(0xffffffff,32);
 /*	uint64_t res, temp_a, temp_d;
 	uint32_t a, b, res_asm_a, res_asm_d, res_eflags;
 	TEST_EFLAGS test_eflags;
