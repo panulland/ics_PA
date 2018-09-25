@@ -559,7 +559,7 @@ void alu_test_imul() {
 }
 
 void alu_test_mul() {
-printf("%llx\n",sign_ext_64(0x8001,16));
+printf("%llx\n",sign_ext_64(0x0001,16));
 printf("%llx\n",sign_ext_64(0xffffffff,32));
 /*	uint64_t res, temp_a, temp_d;
 	uint32_t a, b, res_asm_a, res_asm_d, res_eflags;
