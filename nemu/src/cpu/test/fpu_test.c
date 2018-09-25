@@ -111,6 +111,8 @@ void fpu_test_div() {
 }
 
 void fpu_test_mul() {
+
+printf("%x\n",internal_float_mul(0x00000001,0x00000001));
 	float input[] = {
 		p_zero.fval, n_zero.fval, p_inf.fval, n_inf.fval, denorm_1.fval, denorm_2.fval, big_1.fval, big_2.fval,
 		p_nan.fval, n_nan.fval, denorm_3.fval, small_1.fval, small_2.fval,
@@ -130,7 +132,6 @@ void fpu_test_mul() {
 			//printf("b       sign %x, exp %x, %d, sig %x\n", b.sign, b.exponent, b.exponent, b.significand);
 			//printf("res     sign %x, exp %x, %d, sig %x\n", res.sign, res.exponent, res.exponent, res.significand);
 			//printf("res_fpu sign %x, exp %x, %d, sig %x\n", res_fpu.sign, res_fpu.exponent, res_fpu.exponent, res_fpu.significand);
-printf("%x\n",internal_float_mul(0x00000001,0x00000001));
 			assert(res_fpu.val == res.val);
 		}
 	}
