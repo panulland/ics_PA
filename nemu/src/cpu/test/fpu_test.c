@@ -130,6 +130,8 @@ void fpu_test_mul() {
 			//printf("b       sign %x, exp %x, %d, sig %x\n", b.sign, b.exponent, b.exponent, b.significand);
 			//printf("res     sign %x, exp %x, %d, sig %x\n", res.sign, res.exponent, res.exponent, res.significand);
 			//printf("res_fpu sign %x, exp %x, %d, sig %x\n", res_fpu.sign, res_fpu.exponent, res_fpu.exponent, res_fpu.significand);
+if(res.val==0x7ff80000)
+printf("%x %x\n",a.val,b.val);
 			assert(res_fpu.val == res.val);
 		}
 	}
