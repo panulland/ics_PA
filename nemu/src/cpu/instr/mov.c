@@ -229,7 +229,7 @@ make_instr_func(mov_a2off_v) {
 	m.val = r.val;
 	operand_write(&m);
 	return 5;
-}
+}*/
 
 
 make_instr_func(mov_zrm82r_v) {
@@ -287,4 +287,4 @@ make_instr_func(mov_srm162r_l) {
 
 	print_asm_2("mov", "", len, &rm, &r);
         return len;
-}*/
+}
