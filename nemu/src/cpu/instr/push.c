@@ -12,6 +12,6 @@ static void instr_execute_1op() {
 //make_instr_impl_1op(push,r,v)
 
 
-make_instr_fun(push_r_v) {
+make_instr_func(push_r_v) {
 	return 1;
 }
