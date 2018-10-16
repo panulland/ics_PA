@@ -7,9 +7,7 @@ make_instr_func(push) {
 
 	int len=1;
 
-	r.type=OPR_REG;
-	reg.addr=eip+1;
-	reg.data_size=data_size;
+	r.data_size=data_size;
 
 	esp = esp - 4;
 }
