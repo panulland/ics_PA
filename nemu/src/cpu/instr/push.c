@@ -10,6 +10,7 @@ make_instr_func(push) {
 	r.addr=opcode&0x7;
 
 	cpu.esp=cpu.esp-4;
+	operand_read(&r);
 
 
 	operand_read(&r);
