@@ -8,6 +8,10 @@ make_instr_func(push) {
 	int len=1;
 
 	r.data_size=data_size;
+	r.type=OPR_REG;
+	r.addr=opcode&0x7;
 
-	esp = esp - 4;
+	operand_read(&r);
+
+	return len;
 }
