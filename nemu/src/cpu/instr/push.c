@@ -1,6 +1,6 @@
 #include "cpu/instr.h"
 
-make_instr_impl_1op(push,r,32);
+make_instr_impl_1op(push,r,v);
 
 make_instr_func(push) {
 	OPERAND r;
