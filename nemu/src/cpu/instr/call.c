@@ -7,6 +7,7 @@ make_instr_func(call_near) {
 	rel.data_size = data_size;
 	rel.addr = eip + 1;
 
+	int offset = sign_ext(rel.val,data_size);
 	print_asm_1("call","",2,&rel);
 
 	cpu.eip += offset;
