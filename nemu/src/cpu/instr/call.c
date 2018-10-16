@@ -10,6 +10,7 @@ make_instr_func(call_near) {
 	operand_read(&rel);
 
 	int offset = sign_ext(rel.val,data_size);
+	printf("%d\n",rel.val);
 	print_asm_1("call","",2,&rel);
 
 
