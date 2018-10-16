@@ -12,4 +12,4 @@ make_instr_func(call_near) {
 
 	cpu.eip += offset;
 	return 1 + data_size / 8;
-
+}
