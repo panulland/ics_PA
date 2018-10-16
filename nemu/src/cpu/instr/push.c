@@ -1,11 +1,13 @@
 #include "cpu/instr.h"
 
 make_instr_func(push) {
-	OPERAND reg;
+	OPERAND r;
 
-	reg.type=OPR_REG;
+	int len=1;
+
+	r.type=OPR_REG;
 	reg.addr=eip+1;
 	reg.data_size=data_size;
 
-	reg=reg-4;
+	esp = esp - 4;
 }
