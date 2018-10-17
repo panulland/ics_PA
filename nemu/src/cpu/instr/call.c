@@ -9,6 +9,13 @@ make_instr_func(call_near) {
 
 	operand_read(&rel);
 
+	OPERAND stack;
+	stack.type = OPR_REG;
+	stack.data_size=data_size;
+	stack.addr=0x4;
+	cpu.esp=cpu.esp-4;
+	oprand_write(cpu.eip);
+
 	int offset = sign_ext(rel.val,data_size);
 	print_asm_1("call","",2,&rel);
 
