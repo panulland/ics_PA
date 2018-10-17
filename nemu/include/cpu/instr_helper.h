@@ -182,7 +182,7 @@ static inline bool inv_cc();
 	inv_cc()
 
 #define condition_ne \
-	
+	inv_cc()	
 
 #define condition_na \
 	cpu.eflags.CF == 1 && cpu.eflags.ZF == 1
