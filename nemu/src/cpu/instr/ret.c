@@ -2,5 +2,6 @@
 
 make_instr_func(ret_near) {
 	OPERAND rel;
+	return 1;
 
 }
