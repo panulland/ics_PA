@@ -2,7 +2,7 @@
 
 static void instr_execute_2op() {
 	operand_read(&opr_src);
-	opr_dest.val = opr_src.val & opr_dest.val;
+	opr_dest.val = alu_and (opr_dest.val,opr_src.val,data_size);
 	cpu.eflags.CF = 0;
 	cpu.eflags.OF = 0;
 }
