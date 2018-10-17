@@ -36,6 +36,7 @@ extern uint8_t data_size;
 #include "cpu/instr/sbb.h"
 #include "cpu/instr/and.h"
 #include "cpu/instr/xor.h"
+#include "cpu/instr/dec.h"
 
 /* TODO: add more instructions here */
 
