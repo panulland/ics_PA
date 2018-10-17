@@ -1,8 +1,9 @@
 #include "cpu/instr.h"
 
 static void instr_execute_1op() {
-	opr_dest.val--;
-	operand_write(&opr_dest);
+	operand_read(&opr_src);
+	opr_src.val--;
+	operand_write(&opr_src);
 }
 
 make_instr_impl_1op(dec,rm,v)

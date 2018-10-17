@@ -4,7 +4,6 @@ static void instr_execute_1op() {
 	operand_read(&opr_src);
 	opr_src.val ++;
 	operand_write(&opr_src);
-	printf("%d\n",opr_src.val);
 }
 
 make_instr_impl_1op(inc,rm,v)
