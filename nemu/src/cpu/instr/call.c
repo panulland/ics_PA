@@ -15,7 +15,7 @@ make_instr_func(call_near) {
 	stack.addr=0x4;
 	stack.val=cpu.eip;
 	cpu.esp=cpu.esp-4;
-	oprand_write(&stack);
+	operand_write(&stack);
 
 	int offset = sign_ext(rel.val,data_size);
 	print_asm_1("call","",2,&rel);
