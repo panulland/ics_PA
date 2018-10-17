@@ -4,5 +4,6 @@
 make_instr_func(jna_short_);
 make_instr_func(jbe_short_);
 make_instr_func(jne_short_);
+make_instr_func(je_short_);
 
 #endif
