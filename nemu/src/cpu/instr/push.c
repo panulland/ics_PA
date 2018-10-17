@@ -1,8 +1,6 @@
 #include "cpu/instr.h"
 
 static void instr_execute_1op() {
-	operand_read(&opr_src);
-	printf("%x %x\n",opr_src.val,opr_dest.val);
 	opr_dest.type = OPR_MEM;
 	cpu.esp -= 4;
 	opr_dest.addr = cpu.esp;
