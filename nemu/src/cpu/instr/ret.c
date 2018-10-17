@@ -9,7 +9,7 @@ make_instr_func(ret_near) {
 	cpu.eip=stack.val;
 	cpu.esp+=4;
 
-	print_asm_1("ret","",2,cpu.eip);
+	printf("ret");
 
 	return 1 + data_size / 8;
 }
