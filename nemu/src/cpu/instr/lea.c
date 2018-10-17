@@ -1,6 +1,6 @@
 #include "cpu/instr.h"
 
-make_instr_funci(lea) {
+make_instr_func(lea) {
 	OPERAND m,r;
 
 	m.data_size=r.data_size=data_size;
