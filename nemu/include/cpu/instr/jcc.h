@@ -36,5 +36,6 @@ make_instr_func(jle_near);
 make_instr_func(jg_near);
 make_instr_func(jna_near);
 make_instr_func(jne_near);
+make_instr_func(je_near);
 
 #endif
