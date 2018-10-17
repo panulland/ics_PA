@@ -170,7 +170,7 @@ static inline bool inv_cc();
 	inv_cc()
 
 #define condition_be \
-	cpu.eflags.CF = 1 || cpu.eflags.ZF = 1
+	cpu.eflags.CF == 1 || cpu.eflags.ZF == 1
 
 #define condition_o \
 	inv_cc()
@@ -185,7 +185,7 @@ static inline bool inv_cc();
 	inv_cc()
 
 #define condition_na \
-	cpu.eflags.CF = 1 && cpu.eflags.ZF = 1
+	cpu.eflags.CF == 1 && cpu.eflags.ZF == 1
 
 #define condition_no \
 	inv_cc()
