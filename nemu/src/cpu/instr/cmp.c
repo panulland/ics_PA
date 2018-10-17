@@ -3,7 +3,6 @@
 static void instr_execute_2op() {
 	operand_read (&opr_src);
 	opr_dest.val = alu_sub(opr_src.val,opr_dest.val,data_size);
-	printf("%d",cpu.eflags.CF);
 }
 
 make_instr_impl_2op(cmp,i,rm,b)
