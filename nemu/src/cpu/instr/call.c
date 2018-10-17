@@ -11,7 +11,7 @@ make_instr_func(call_near) {
 
 	OPERAND m;
 	m.data_size=data_size;
-	m.type=MEM;
+	m.type=OPR_MEM;
 	m.val=cpu.eip;
 	cpu.esp -= 4;
 	m.addr=cpu.esp;
