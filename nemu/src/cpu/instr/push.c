@@ -5,7 +5,7 @@ static void instr_execute_1op() {
 	cpu.esp -= 4;
 	opr_dest.addr = cpu.esp;
 	opr_dest.data_size=data_size;
-	opr_dest.val = cpu.esp;
+	opr_dest.val = cpu.eip;
 	operand_write(&opr_dest);
 }
 
