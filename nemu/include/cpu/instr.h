@@ -28,6 +28,7 @@ extern uint8_t data_size;
 #include "cpu/instr/ret.h"
 #include "cpu/instr/cmp.h"
 #include "cpu/instr/jcc.h"
+#indlude "cpu/instr/lea.h"
 
 /* TODO: add more instructions here */
 
