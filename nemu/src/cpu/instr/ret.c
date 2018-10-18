@@ -9,7 +9,7 @@ make_instr_func(ret_near) {
 
 	cpu.eip = m.val;
 
-	cpu.esp+=4;
+	cpu.esp += 4;
 
 	print_asm_0("ret","",1);
 
