@@ -2,6 +2,10 @@
 
 static void instr_execute_1op() {
 	operand_read(&opr_src);
+	if(opcode==0x6a)
+	{
+		opr_src.val = sign_ext(opr_src.val,8);
+	}
 	OPERAND opr_dest;
 	opr_dest.data_size=data_size;
 	opr_dest.type = OPR_MEM;
