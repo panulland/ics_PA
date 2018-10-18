@@ -73,14 +73,13 @@ void print_asm_3(char * instr, char * suffix, uint8_t len, OPERAND * opr_1, OPER
 #define decode_data_size_bv \
        	opr_src.data_size = 8; opr_dest.data_size = data_size; \
 	operand_read(&opr_src); \
-	opr_src.data_size=data_size; \
-	opr_src.val = sign_ext(opr_src.val,data_size)&(0xffffffff>>(32-data_size)); \
+	opr_src.val = sign_ext(opr_src.val,8)&(0xFFFFFFFF>>(32-data_size)); \
 	operand_write(&opr_src);
 #define decode_data_size_short_ opr_src.data_size = opr_dest.data_size = 8;
 #define decode_data_size_near opr_src.data_size = opr_dest.data_size = 32;
 
 // determine the type and address of operand(s)
-// possible types: r, rm, i, m, a, c, o
+// possible types: r, rm, i, m, aj , c, o
 // here c stands for CL, CX, ECX
 
 #define decode_operand_rm \
