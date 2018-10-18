@@ -200,10 +200,10 @@ static inline bool inv_cc();
 	cpu.eflags.ZF == 0 && cpu.eflags.SF == cpu.eflags.OF
 
 #define condition_ge \
-	cpu.eflags.SF == cpu.eflags.OF || cpu.eflags.ZF = 1
+	cpu.eflags.SF == cpu.eflags.OF || cpu.eflags.ZF == 1
 
 #define condition_l \
-	cpu.eflags.SF != cpu.eflags.OF && cpu.eflags.ZF = 0
+	cpu.eflags.SF != cpu.eflags.OF && cpu.eflags.ZF == 0
 
 #define condition_le \
 	cpu.eflags.ZF == 1 || cpu.eflags.SF != cpu.eflags.OF
