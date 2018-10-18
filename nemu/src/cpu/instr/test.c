@@ -3,8 +3,8 @@
 static void instr_execute_2op() {
 	operand_read(&opr_src);
 	operand_read(&opr_dest);
-	uint32_t temp;
-	temp = alu_and (opr_dest.val,opr_src.val,data_size);
+	OPERAND t;	
+	t.val = alu_and (opr_dest.val,opr_src.val,data_size);
 	cpu.eflags.CF = 0;
 	cpu.eflags.OF = 0;
 }
