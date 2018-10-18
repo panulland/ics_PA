@@ -4,7 +4,7 @@ static void instr_execute_1op() {
 	operand_read(&opr_src);
 	if(opr_src.type==OPR_IMM&&opr_src.data_size==8)
 	{
-		opr_src.val=sign_ext(opr_src.val,8)&(0xffffffff>>(32-data_size));
+		opr_src.val=sign_ext(opr_src.val,8)&(0xFFFFFFFF>>(32-data_size));
 	}
 	OPERAND opr_dest;
 	opr_dest.data_size=data_size;
