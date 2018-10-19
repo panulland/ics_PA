@@ -40,11 +40,11 @@ make_instr_func(jmp_near_indirect) {
 	int len=1;
 	len += modrm_rm(eip + 1,&rm);
 
-	print_asm_1("jmp","",2,&rm);
+	print_asm_1("jmp","", len, &rm);
 	operand_read(&rm);
 
 	cpu.eip = rm.val;
 
-	return len;
+	return 0;
 }
 
