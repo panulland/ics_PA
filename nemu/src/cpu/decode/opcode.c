@@ -85,7 +85,7 @@ instr_func group_2_b_entry[8] =
 
 /* 0xc1 */
 instr_func group_2_v_entry[8] =
-{inv, inv, inv, inv, shl_i2rm_bv, shr_i2rm_bv, inv, sar_i2rm_bv};
+{inv, inv, inv, inv, shl_i2rm_bv, shr_i2rm_bv, inv, __ref_sar_i2rm_bv};
 
 /* 0xd0 */
 instr_func group_2_1b_entry[8] =
@@ -101,7 +101,7 @@ instr_func group_2_cb_entry[8] =
 
 /* 0xd3 */
 instr_func group_2_cv_entry[8] =
-{inv, inv, inv, inv, shl_c2rm_bv, inv, shr_c2rm_bv, sar_c2rm_bv};
+{inv, inv, inv, inv, __ref_shl_c2rm_bv, inv, shr_c2rm_bv, sar_c2rm_bv};
 
 /* 0xf6 */
 instr_func group_3_b_entry[8] =
