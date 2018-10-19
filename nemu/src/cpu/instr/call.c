@@ -22,3 +22,9 @@ make_instr_func(call_near) {
 	cpu.eip += offset;
 	return 1 + data_size / 8;
 }
+
+make_instr_func(call_near_indirect) {
+	OPERAND rm;
+	rm.data_size=data_size;
+	int len = 1;
+	len += modrm_rm(eip + 1, &rm);
