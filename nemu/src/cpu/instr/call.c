@@ -28,3 +28,17 @@ make_instr_func(call_near_indirect) {
 	rm.data_size=data_size;
 	int len = 1;
 	len += modrm_rm(eip + 1, &rm);
+	OPERAND m;
+	m.data_size = data_size;
+	m.type = OPR_MEM;
+	m.val=cpu.eip + len;
+	cpu.esp -= 4;
+	m.addr = cpu.esp;
+	operand_write(&m);
+
+	print_asm_1("call","",len,&rm);
+
+	operand_read(&rm);
+	cpu.eip=rm.val;
+	return len;
+}
