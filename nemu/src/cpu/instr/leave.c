@@ -20,7 +20,7 @@ make_instr_func(leave) {
 	operand_read(&m);
 	cpu.esp+=4;
 	r.val=m.val;
-	operand_read(&r);
+	operand_write(&r);
 
 	print_asm_0("leave","",1);
 	return 1;
