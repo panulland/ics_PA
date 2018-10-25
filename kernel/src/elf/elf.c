@@ -39,15 +39,13 @@ uint32_t loader() {
 			/* TODO: copy the segment from the ELF file to its proper memory area */
 			for(uint32_t i = 0;i< ph->p_filesz;i++)
 			{
-				ph->p_vaddr.val= ph->p_offset + i;
-				ph->p_vaddr ++;
+				ph->p_vaddr= ph->p_offset + i;
 			}
 
 			/* TODO: zeror the memory area [vaddr + file_sz, vaddr + mem_sz) */
 			for(uint32_t i = ph->p_filesz;i <= ph->p_memsz; i++)
 			{
-				ph->p_vaddr.val = 0;
-				ph->p_vaddr ++;
+				ph->p_vaddr = 0;
 			}
 
 #ifdef IA32_PAGE
