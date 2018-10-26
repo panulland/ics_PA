@@ -45,7 +45,11 @@ uint32_t loader() {
 			}
 
 			/* TODO: zeror the memory area [vaddr + file_sz, vaddr + mem_sz) */
-			;
+			for(uint32_t i=file_sz;i<=mem_sz;i++)
+			{
+				uint32_t *data=(uint32_t*)(ph->p_vaddr+i);
+				*data=0;
+			}
 
 #ifdef IA32_PAGE
 			/* Record the program break for future use */
