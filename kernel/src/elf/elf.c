@@ -37,7 +37,10 @@ uint32_t loader() {
 			panic("Please implement the loader");
 
 			/* TODO: copy the segment from the ELF file to its proper memory area */
-			strncpy(&ph->p_vaddr,&ph->p_offset,ph->p_filesz);
+			for(uint32_t i=0;i<ph->p_filesz;i++)
+			{
+				&(ph->p_offset+i)=&(ph->vaddr+i);
+			}
 
 			/* TODO: zeror the memory area [vaddr + file_sz, vaddr + mem_sz) */
 			;
