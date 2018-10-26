@@ -45,7 +45,7 @@ uint32_t loader() {
 			}
 
 			/* TODO: zeror the memory area [vaddr + file_sz, vaddr + mem_sz) */
-			for(uint32_t i=file_sz;i<=mem_sz;i++)
+			for(uint32_t i=ph->p_filesz;i<=ph->p_memsz;i++)
 			{
 				uint32_t *data=(uint32_t*)(ph->p_vaddr+i);
 				*data=0;
