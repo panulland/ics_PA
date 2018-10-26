@@ -41,7 +41,7 @@ uint32_t loader() {
 			{
 				uint32_t *data=(uint32_t*)(ph->p_offset+i);
 				uint32_t *data_=(uint32_t*)(ph->p_vaddr+i);
-				data_=data;
+				*data_=*data;
 			}
 
 			/* TODO: zeror the memory area [vaddr + file_sz, vaddr + mem_sz) */
