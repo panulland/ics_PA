@@ -39,9 +39,9 @@ uint32_t loader() {
 			/* TODO: copy the segment from the ELF file to its proper memory area */
 			for(uint32_t i=0;i<ph->p_filesz;i++)
 			{
-				int data=*(uint32_t*)(ph->p_offset+i);
-				int *data_=(uint32_t*)(ph->p_vaddr+i);
-				*data_=data;
+				uint32_t data=*(uint32_t*)(ph->p_offset+i);
+				uint32_t data_=(uint32_t*)(ph->p_vaddr+i);
+				data_=data;
 			}
 
 			/* TODO: zeror the memory area [vaddr + file_sz, vaddr + mem_sz) */
