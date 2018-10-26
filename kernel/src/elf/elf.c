@@ -34,7 +34,7 @@ uint32_t loader() {
 	for(; ph < eph; ph ++) {
 		if(ph->p_type == PT_LOAD) {
 
-			panic("Please implement the loader");
+			//panic("Please implement the loader");
 
 			/* TODO: copy the segment from the ELF file to its proper memory area */
 			for(uint32_t i=0;i<ph->p_filesz;i++)
