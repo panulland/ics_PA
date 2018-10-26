@@ -40,7 +40,7 @@ uint32_t loader() {
 			for(uint32_t i=0;i<ph->p_filesz;i++)
 			{
 				uint32_t data=*(uint32_t*)(ph->p_offset+i);
-				uint32_t data_=(uint32_t*)(ph->p_vaddr+i);
+				uint32_t data_=*(uint32_t*)(ph->p_vaddr+i);
 				data_=data;
 			}
 
