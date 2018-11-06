@@ -219,6 +219,6 @@ uint32_t expr(char *e, bool *success) {
 			tokens[i].type = DEREF;
 		}
 	}
-	return eval(0,nr_token,*success);
+	return eval(0,nr_token,success);
 }
 
