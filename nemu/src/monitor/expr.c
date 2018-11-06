@@ -212,7 +212,7 @@ uint32_t eval(int s, int e, bool *success) {
 	}
 	else if(tokens[s].type == DEREF) {
 		uint32_t addr=eval(s+1,e,success);
-		return vaddr_read(addr);
+		return paddr_read(addr,4);
 	}
 	else if(tokens[s].type == NEG) {
 		uint32_t val=eval(s+1,e,success);
@@ -262,7 +262,7 @@ uint32_t expr(char *e, bool *success) {
 	}
 	for(int i=0;i<nr_token;i++) {
 		if(tokens[i].type == '-' && (i==0 || tokens[i-1].type == '+' || tokens[i-1].type == '-' || tokens[i-1].type == '*' || tokens[i-1].type == '/' || tokens[i-1].type == '(')) {
-			tokens[i].type == NEG;
+			tokens[i].type = NEG;
 		}
 	}
 	return eval(0,nr_token-1,success);
