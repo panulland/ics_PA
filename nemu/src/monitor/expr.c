@@ -191,7 +191,7 @@ uint32_t eval(int s, int e, bool *success) {
 	}
 	else {
 		*success = true;
-		int op;
+		int op = s;
 		int class = 1;
 		for(int i=s;i<e;i++) {
 			if(tokens[i].type == '+' || tokens[i].type == '-') {
