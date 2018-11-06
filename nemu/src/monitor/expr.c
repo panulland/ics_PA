@@ -180,6 +180,7 @@ uint32_t eval(int s, int e, bool *success) {
 					     case 'b': res = cpu.ebp; break;
 					     case 's': res = cpu.esp; break;
 					     case 'i': res = cpu.eip; break;
+				     }
 			     }
 			     break;
 		}
