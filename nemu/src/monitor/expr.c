@@ -38,7 +38,7 @@ static struct rule {
 	{"0[xX][0-9a-fA-F]+",HEX},
 	{"[0-9]+", NUM},
 	{"\\$e[a,c,d,b]x", REG},
-	{"\\$e[sb]p", REG},
+	{"\\$e[sib]p", REG},
 	{"\\$e[sd]i", REG},
 	{"[a-zA-Z]+[a-zA-Z0-9]*", SYMB},
 };
@@ -176,10 +176,10 @@ uint32_t eval(int s, int e, bool *success) {
 					     res = cpu.edi;
 			     }
 			     else if(tokens[s].str[3]=='p') {
-				     if(tokens[s].str[2] == 's')
-					     res = cpu.esp;
-				     else
-					     res = cpu.ebp;
+				     switch(tokens[s].str[2]) {
+					     case 'b': res = cpu.ebp; break;
+					     case 's': res = cpu.esp; break;
+					     case 'i': res = cpu.eip; break;
 			     }
 			     break;
 		}
