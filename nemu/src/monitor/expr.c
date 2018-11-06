@@ -150,13 +150,13 @@ uint32_t eval(int s, int e, bool *success) {
 		int n = 1;
 		switch(tokens[s].type) {
 			case NUM: 
-			    	  for(int i=0;i<len;i++) {
+			    	  for(int i=len-1;i>=0;i--) {
 				     	  res += (tokens[s].str[i]-'0')*n;
 					  n*=10;
      				  }
      				  break;
 			case HEX: 
-     				  for(int i=2;i<len;i++) {
+     				  for(int i=len-1;i>1;i++) {
      					  res += (tokens[s].str[i]-'0')*n;
      					  n*=16;
      				  }
