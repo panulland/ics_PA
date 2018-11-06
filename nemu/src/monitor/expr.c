@@ -82,10 +82,10 @@ static bool make_token(char *e) {
 		/* Try all rules one by one. */
 		for(i = 0; i < NR_REGEX; i ++) {
 			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
-				char *substr_start = e + position;
+				// char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
 
-				//printf("match regex[%d] at position %d with len %d: %.*s", i, position, substr_len, substr_len, substr_start);
+				// printf("match regex[%d] at position %d with len %d: %.*s", i, position, substr_len, substr_len, substr_start);
 				position += substr_len;
 
 				
@@ -161,23 +161,23 @@ uint32_t eval(int s, int e, bool *success) {
      				  break;
 			case REG: if(tokens[s].str[3]=='x') {
 				     switch(tokens[s].str[2]) {
-					     case 'a': res = cpu.eax; break;
-				     	     case 'c': res = cpu.ecx; break;
-					     case 'd': res = cpu.edx; break;
-					     case 'b': res = cpu.ebx; break;
+					     case 'a': res = CPU_STATE.eax; break;
+				     	     case 'c': res = CPU_STATE.ecx; break;
+					     case 'd': res = CPU_STATE.edx; break;
+					     case 'b': res = CPU_STATE.ebx; break;
 				     }
 			     }
 			     else if(tokens[s].str[3] == 'i') {
 				     if(tokens[s].str[2] == 's')
-					     res = cpu.esi;
+					     res = CPU_STATE.esi;
 				     else
-					     res = cpu.edi;
+					     res = CPU_STATE.edi;
 			     }
 			     else if(tokens[s].str[3]=='p') {
 				     if(tokens[s].str[2] == 's')
-					     res = cpu.esp;
+					     res = CPU_STATE.esp;
 				     else
-					     res = cpu.ebp;
+					     res = CPU_STATE.ebp;
 			     }
 			     break;
 		}
