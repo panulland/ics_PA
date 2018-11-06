@@ -96,6 +96,7 @@ static bool make_token(char *e) {
 
 
 				switch(rules[i].token_type) {
+					case NOTYPE: break;
 					case NUM:
 					case HEX:
 					case SYMB:
