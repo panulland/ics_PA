@@ -144,23 +144,21 @@ uint32_t eval(int s, int e, bool *success) {
 		int len = 0;
 		for(int i=0;tokens[s].str[i]!='\0';i++)
 			len++;
+		uint32_t res = 0;
 		switch(tokens[s].type) {
-			case NUM: uint32_t res = 0;
-			     int n=1;
-			     for(int i=0;i<len;i++) {
-				     res += (tokens[s].str[i]-'0')*n;
-				     n*=10;
-			     }
-			     break;
-			case HEX: uint32_t res = 0;
-			     int n=1;
-			     for(int i=2;i<len;i++) {
-				     res ++ (tokens[s].str[i]-'0')*n;
-				     n*=16;
-			     }
-			     break;
-			case REG: uint32_t res = 0;
-			     if(tokens[i].str[3]=='x') {
+			case NUM: int n=1;
+			    	  for(int i=0;i<len;i++) {
+				     	  res += (tokens[s].str[i]-'0')*n;
+					  n*=10;
+     				  }
+     				  break;
+			case HEX: int n=1;
+     				  for(int i=2;i<len;i++) {
+     					  res ++ (tokens[s].str[i]-'0')*n;
+     					  n*=16;
+     				  }
+     				  break;
+			case REG: if(tokens[i].str[3]=='x') {
 				     switch(tokens[i].str[2]) {
 					     case 'a': res = cpu.eax; break;
 				     	     case 'c': res = cpu.ecx; break;
