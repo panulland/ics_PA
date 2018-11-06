@@ -95,10 +95,10 @@ static bool make_token(char *e) {
 
 
 				switch(rules[i].token_type) {
-					NUM:
-					HEX:
-					SYMB:
-					REG: for(int i=0;i<substr_len;i++) tokens[nr_token].str[i] = e[position-substr_len+i];
+					case NUM:
+					case HEX:
+					case SYMB:
+					case REG: for(int i=0;i<substr_len;i++) tokens[nr_token].str[i] = e[position-substr_len+i];
 					     tokens[nr_token].str[substr_len]='\0';
 					default: tokens[nr_token].type = rules[i].token_type;
 							 nr_token ++;
@@ -162,10 +162,10 @@ uint32_t eval(int s, int e, bool *success) {
 			REG: uint32_t res = 0;
 			     if(tokens[i].str[3]=='x') {
 				     switch(tokens[i].str[2]) {
-					     'a': res = cpu.eax; break;
-				     	     'c': res = cpu.ecx; break;
-					     'd': res = cpu.edx; break;
-					     'b': res = cpu.ebx; break;
+					     case 'a': res = cpu.eax; break;
+				     	     case 'c': res = cpu.ecx; break;
+					     case 'd': res = cpu.edx; break;
+					     case 'b': res = cpu.ebx; break;
 				     }
 			     }
 			     else if(tokens[i].str[2] == 's') {
