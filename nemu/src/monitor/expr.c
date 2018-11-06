@@ -1,5 +1,6 @@
 #include "nemu.h"
 #include "cpu/reg.h"
+#include "cpu/cpu.h"
 #include "memory/memory.h"
 
 #include <stdlib.h>
@@ -161,23 +162,23 @@ uint32_t eval(int s, int e, bool *success) {
      				  break;
 			case REG: if(tokens[s].str[3]=='x') {
 				     switch(tokens[s].str[2]) {
-					     case 'a': res = CPU_STATE.eax; break;
-				     	     case 'c': res = CPU_STATE.ecx; break;
-					     case 'd': res = CPU_STATE.edx; break;
-					     case 'b': res = CPU_STATE.ebx; break;
+					     case 'a': res = cpu.eax; break;
+				     	     case 'c': res = cpu.ecx; break;
+					     case 'd': res = cpu.edx; break;
+					     case 'b': res = cpu.ebx; break;
 				     }
 			     }
 			     else if(tokens[s].str[3] == 'i') {
 				     if(tokens[s].str[2] == 's')
-					     res = CPU_STATE.esi;
+					     res = cpu.esi;
 				     else
-					     res = CPU_STATE.edi;
+					     res = cpu.edi;
 			     }
 			     else if(tokens[s].str[3]=='p') {
 				     if(tokens[s].str[2] == 's')
-					     res = CPU_STATE.esp;
+					     res = cpu.esp;
 				     else
-					     res = CPU_STATE.ebp;
+					     res = cpu.ebp;
 			     }
 			     break;
 		}
