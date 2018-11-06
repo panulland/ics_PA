@@ -136,38 +136,39 @@ bool check_parentheses(int s, int e) {
 
 uint32_t eval(int s, int e, bool *success) {
 	if(s > e) {
-		success = false;
+		*success = false;
 		return 0;
 	}
 	else if(s == e) {
-		success = true;
+		*success = true;
 		int len = 0;
 		for(int i=0;tokens[s].str[i]!='\0';i++)
 			len++;
 		uint32_t res = 0;
+		int n = 1;
 		switch(tokens[s].type) {
-			case NUM: int n=1;
+			case NUM: 
 			    	  for(int i=0;i<len;i++) {
 				     	  res += (tokens[s].str[i]-'0')*n;
 					  n*=10;
      				  }
      				  break;
-			case HEX: int n=1;
+			case HEX: 
      				  for(int i=2;i<len;i++) {
-     					  res ++ (tokens[s].str[i]-'0')*n;
+     					  res += (tokens[s].str[i]-'0')*n;
      					  n*=16;
      				  }
      				  break;
-			case REG: if(tokens[i].str[3]=='x') {
-				     switch(tokens[i].str[2]) {
+			case REG: if(tokens[s].str[3]=='x') {
+				     switch(tokens[s].str[2]) {
 					     case 'a': res = cpu.eax; break;
 				     	     case 'c': res = cpu.ecx; break;
 					     case 'd': res = cpu.edx; break;
 					     case 'b': res = cpu.ebx; break;
 				     }
 			     }
-			     else if(tokens[i].str[2] == 's') {
-				     if(tokens[i].str[3] == 'i')
+			     else if(tokens[s].str[2] == 's') {
+				     if(tokens[s].str[3] == 'i')
 					     res = cpu.esi;
 				     else
 					     res = cpu.esp;
@@ -178,10 +179,11 @@ uint32_t eval(int s, int e, bool *success) {
 				     
 	}
 	else if(check_parentheses(s,e) == true) {
-		success = true;
-		return eval(p+1,q-1,success);
+		*success = true;
+		return eval(s+1,e-1,success);
 	}
 	else {
+		*success = true;
 		int op;
 		int class = 1;
 		for(int i=s;i<e;i++) {
@@ -194,8 +196,8 @@ uint32_t eval(int s, int e, bool *success) {
 					op = i;
 			}
 		}
-		uint32_t val1 = eval(p,op - 1,success);
-		uint32_t val2 = eval(op + 1,q,success);
+		uint32_t val1 = eval(s,op - 1,success);
+		uint32_t val2 = eval(op + 1,e,success);
 		switch(tokens[op].type) {
 			case '+': return val1 + val2;
 			case '-': return val1 - val2;
