@@ -240,11 +240,11 @@ uint32_t eval(int s, int e, bool *success) {
 		uint32_t val1 = eval(s,op - 1,success);
 		uint32_t val2 = eval(op + 1,e,success);
 		switch(tokens[op].type) {
-			case '+': return val1 + val2;
-			case '-': return val1 - val2;
-			case '*': return val1 * val2;
-			case '/': return val1 / val2;
-			default: *success=false;
+			case '+': return val1 + val2; break;
+			case '-': return val1 - val2; break;
+			case '*': return val1 * val2; break;
+			case '/': return val1 / val2; break;
+			default: *success=false;return 0;
 		}
 	}
 }
