@@ -156,8 +156,13 @@ uint32_t eval(int s, int e, bool *success) {
      				  }
      				  break;
 			case HEX: 
-     				  for(int i=len-1;i>1;i++) {
-     					  res += (tokens[s].str[i]-'0')*n;
+     				  for(int i=len-1;i>1;i--) {
+					  if(tokens[s].str[i]<='9')
+						  res += (tokens[s].str[i]-'0')*n;
+					  else if(tokens[s].str[i]<='F')
+						  res += (tokens[s].str[i]-'A'+10)*n;
+					  else
+						  res += (tokens[s].str[i]-'a'+10)*n;
      					  n*=16;
      				  }
      				  break;
