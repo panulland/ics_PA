@@ -11,7 +11,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ, NUM, REG, SYMB
+	NOTYPE = 256, EQ, NUM, HEX, REG, SYMB, DEREF
 
 	/* TODO: Add more token types */
 
@@ -28,8 +28,13 @@ static struct rule {
 
 	{" +",	NOTYPE},				// white space
 	{"\\+", '+'},
-	{"\\-", '-'},
+	{"-", '-'},
+	{"\\*", '*'},
+	{"/", '/'},
+	{"\\(", '('},
+	{"\\)", ')'},
 	{"==", EQ},
+	{"0[xX][0-9a-fA-F]+",HEX},
 	{"[0-9]+", NUM},
 	{"\\$e[a,c,d,b]x", REG},
 	{"\\$esp", REG},
@@ -80,15 +85,21 @@ static bool make_token(char *e) {
 				char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
 
-				printf("match regex[%d] at position %d with len %d: %.*s", i, position, substr_len, substr_len, substr_start);
+				//printf("match regex[%d] at position %d with len %d: %.*s", i, position, substr_len, substr_len, substr_start);
 				position += substr_len;
 
+				
 				/* TODO: Now a new token is recognized with rules[i]. 
 				 * Add codes to perform some actions with this token.
 				 */
 
 
 				switch(rules[i].token_type) {
+					NUM:
+					HEX:
+					SYMB:
+					REG: for(int i=0;i<substr_len;i++) tokens[nr_token].str[i] = e[position-substr_len+i];
+					     tokens[nr_token].str[substr_len]='\0';
 					default: tokens[nr_token].type = rules[i].token_type;
 							 nr_token ++;
 				}
@@ -98,12 +109,103 @@ static bool make_token(char *e) {
 		}
 
 		if(i == NR_REGEX) {
-			printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
+			// printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
 		}
 	}
 
 	return true; 
+}
+
+bool check_parentheses(int s, int e) {
+	if(tokens[s].type != '(' && tokens[e].type != ')')
+		return false;
+	int flag=0;
+	for(int i = s + 1;i < e;i++) {
+		if(tokens[i].type == '(')
+			flag++;
+		else if(tokens[i].type == ')')
+			flag--;
+		if(flag < 0)
+			return false;
+	}
+	if(flag != 0)
+		return false;
+	return true;
+}
+
+uint32_t eval(int s, int e, bool *success) {
+	if(s > e) {
+		success = false;
+		return 0;
+	}
+	else if(s == e) {
+		success = true;
+		int len = 0;
+		for(int i=0;tokens[s].str[i]!='\0';i++)
+			len++;
+		switch(tokens[s].type) {
+			NUM: uint32_t res = 0;
+			     int n=1;
+			     for(int i=0;i<len;i++) {
+				     res += (tokens[s].str[i]-'0')*n;
+				     n*=10;
+			     }
+			     break;
+			HEX: uint32_t res = 0;
+			     int n=1;
+			     for(int i=2;i<len;i++) {
+				     res ++ (tokens[s].str[i]-'0')*n;
+				     n*=16;
+			     }
+			     break;
+			REG: uint32_t res = 0;
+			     if(tokens[i].str[3]=='x') {
+				     switch(tokens[i].str[2]) {
+					     'a': res = cpu.eax; break;
+				     	     'c': res = cpu.ecx; break;
+					     'd': res = cpu.edx; break;
+					     'b': res = cpu.ebx; break;
+				     }
+			     }
+			     else if(tokens[i].str[2] == 's') {
+				     if(tokens[i].str[3] == 'i')
+					     res = cpu.esi;
+				     else
+					     res = cpu.esp;
+			     }
+			     break;
+		}
+		return res;
+				     
+	}
+	else if(check_parentheses(s,e) == true) {
+		success = true;
+		return eval(p+1,q-1);
+	}
+	else {
+		int op;
+		int class = 1;
+		for(int i=s;i<e;i++) {
+			if(tokens[i].type == '+' || tokens[i].type == '-') {
+				op = i;
+				class = 0;
+			}
+			else if(tokens[i].type == '*' || tokens[i].type == '/') {
+				if(class == 1)
+					op = i;
+			}
+		}
+		uint32_t val1 = eval(p,op - 1);
+		uint32_t val2 = eval(op + 1,q);
+		switch(tokens[op].type) {
+			case '+': return val1 + val2;
+			case '-': return val1 - val2;
+			case '*': return val1 * val2;
+			case '/': return val1 / val2;
+			default: assert(0);
+		}
+	}
 }
 
 uint32_t expr(char *e, bool *success) {
@@ -112,9 +214,11 @@ uint32_t expr(char *e, bool *success) {
 		return 0;
 	}
 
-	printf("\nPlease implement expr at expr.c\n");
-	assert(0);
-
-	return 0;
+	for(int i=0;i<nr_token;i++) {
+		if(tokens[i].type == '*' && (i==0 || tokens[i-1].type == '+' || tokens[i-1].type == '-' || tokens[i-1] == '*' || tokens[i-1].type == '/')) {
+			tokens[i].type == DEREF;
+		}
+	}
+	return eval(0,nr_token,*success);
 }
 
