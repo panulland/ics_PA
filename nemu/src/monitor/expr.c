@@ -179,7 +179,7 @@ uint32_t eval(int s, int e, bool *success) {
 	}
 	else if(check_parentheses(s,e) == true) {
 		success = true;
-		return eval(p+1,q-1);
+		return eval(p+1,q-1,success);
 	}
 	else {
 		int op;
@@ -194,8 +194,8 @@ uint32_t eval(int s, int e, bool *success) {
 					op = i;
 			}
 		}
-		uint32_t val1 = eval(p,op - 1);
-		uint32_t val2 = eval(op + 1,q);
+		uint32_t val1 = eval(p,op - 1,success);
+		uint32_t val2 = eval(op + 1,q,success);
 		switch(tokens[op].type) {
 			case '+': return val1 + val2;
 			case '-': return val1 - val2;
@@ -214,7 +214,7 @@ uint32_t expr(char *e, bool *success) {
 
 	for(int i=0;i<nr_token;i++) {
 		if(tokens[i].type == '*' && (i==0 || tokens[i-1].type == '+' || tokens[i-1].type == '-' || tokens[i-1] == '*' || tokens[i-1].type == '/')) {
-			tokens[i].type == DEREF;
+			tokens[i].type = DEREF;
 		}
 	}
 	return eval(0,nr_token,*success);
