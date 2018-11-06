@@ -12,7 +12,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ, NUM, HEX, REG, SYMB, DEREF
+	NOTYPE = 256, EQ, NUM, HEX, REG, SYMB, DEREF, NEG
 
 	/* TODO: Add more token types */
 
@@ -119,19 +119,33 @@ static bool make_token(char *e) {
 	return true; 
 }
 
-bool check_parentheses(int s, int e) {
-	if(tokens[s].type != '(' && tokens[e].type != ')')
-		return false;
+bool check_parentheses(int s, int e, bool *success) {
 	int flag=0;
-	for(int i = s + 1;i < e;i++) {
+	for(int i = s;i <= e;i++) {
 		if(tokens[i].type == '(')
 			flag++;
 		else if(tokens[i].type == ')')
 			flag--;
-		if(flag < 0)
+		if(flag < 0) {
+			*success=false;
+			return false;
+		}
+	}
+	if(flag != 0) {
+		*success=false;
+		return false;
+	}
+	if(tokens[s].type != '(' || tokens[s].type != ')')
+		return false;
+	for(int i=s+1;i<e;i++) {
+		if(tokens[s].type =='(')
+			flag++;
+		else if(tokens[s].type == ')')
+			flag--;
+		if(flag<0)
 			return false;
 	}
-	if(flag != 0)
+	if(flag!=0)
 		return false;
 	return true;
 }
@@ -192,20 +206,33 @@ uint32_t eval(int s, int e, bool *success) {
 		return res;
 				     
 	}
-	else if(check_parentheses(s,e) == true) {
+	else if(check_parentheses(s,e,success) == true) {
 		*success = true;
 		return eval(s+1,e-1,success);
+	}
+	else if(tokens[s].type == DEREF) {
+		uint32_t addr=eval(s+1,e,success);
+		return vaddr_read(addr);
+	}
+	else if(tokens[s].type == NEG) {
+		uint32_t val=eval(s+1,e,success);
+		return -val;
 	}
 	else {
 		*success = true;
 		int op = s;
 		int class = 1;
+		int flag = 0;
 		for(int i=s;i<e;i++) {
-			if(tokens[i].type == '+' || tokens[i].type == '-') {
+			if(tokens[i].type == '(')
+				flag++;
+			else if(tokens[i].type == ')')
+				flag--;
+			else if((tokens[i].type == '+' || tokens[i].type == '-')&&flag==0) {
 				op = i;
 				class = 0;
 			}
-			else if(tokens[i].type == '*' || tokens[i].type == '/') {
+			else if((tokens[i].type == '*' || tokens[i].type == '/')&&flag==0) {
 				if(class == 1)
 					op = i;
 			}
@@ -229,8 +256,13 @@ uint32_t expr(char *e, bool *success) {
 	}
 
 	for(int i=0;i<nr_token;i++) {
-		if(tokens[i].type == '*' && (i==0 || tokens[i-1].type == '+' || tokens[i-1].type == '-' || tokens[i-1].type == '*' || tokens[i-1].type == '/')) {
+		if(tokens[i].type == '*' && (i==0 || tokens[i-1].type == '+' || tokens[i-1].type == '-' || tokens[i-1].type == '*' || tokens[i-1].type == '/' || tokens[i-1].type == '(')) {
 			tokens[i].type = DEREF;
+		}
+	}
+	for(int i=0;i<nr_token;i++) {
+		if(tokens[i].type == '-' && (i==0 || tokens[i-1].type == '+' || tokens[i-1].type == '-' || tokens[i-1].type == '*' || tokens[i-1].type == '/' || tokens[i-1].type == '(')) {
+			tokens[i].type == NEG;
 		}
 	}
 	return eval(0,nr_token-1,success);
