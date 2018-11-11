@@ -9,6 +9,8 @@ typedef struct {
 	char data[64];
 } CacheLine;
 
+#define cache CacheLine[1024]
+
 void init_cache();
 
 uint32_t cache_read(paddr_t paddr, size_t len, CacheLine* cache);
