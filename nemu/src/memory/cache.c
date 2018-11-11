@@ -38,7 +38,7 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 	for(int i=0; i < 8;i++) {
 		if(cache[num + i].tag == tag && cache[num + i].valid == 1) {
 			cache[num + i].data = data;
-			hw_mem__write(paddr,len,data);
+			hw_mem_write(paddr,len,data);
 			return;
 		}
 	}
