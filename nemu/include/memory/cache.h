@@ -9,7 +9,7 @@ typedef struct {
 	char data[64];
 } CacheLine;
 
-CacheLine cache = new CacheLine[1024];
+CacheLine cache[1024];
 
 void init_cache();
 
