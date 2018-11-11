@@ -5,7 +5,7 @@
 
 typedef struct {
 	int valid;
-	uint64_t tag;
+	uint32_t tag;
 	char data[64];
 } CacheLine;
 
