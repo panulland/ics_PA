@@ -1,6 +1,7 @@
 #include "nemu.h"
 #include "cpu/cpu.h"
 #include "memory/memory.h"
+#include "memory/cache.h"
 #include "device/mm_io.h"
 #include <memory.h>
 #include <stdio.h>
@@ -58,7 +59,11 @@ void vaddr_write(vaddr_t vaddr, uint8_t sreg, size_t len, uint32_t data) {
 
 void init_mem() {
 	// clear the memory on initiation
+#ifdef CACHE_ENABLED
+	init_cache();
+#else
 	memset(hw_mem, 0, MEM_SIZE_B);
+#endif
 
 #ifdef TLB_ENABLED
 	make_all_tlb();
