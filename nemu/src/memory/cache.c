@@ -22,12 +22,12 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		if(cache[num + i].valid == 0) {
 			cache[num + i].valid = 1;
 			cache[num + i].tag = tag;
-			cache[num + i].data = paddr_read(paddr,len);
+			cache[num + i].data = hw_mem_read(paddr,len);
 			return cache[num + i].data;
 		}
 	}
 	cache[num].tag=tag;
-	cache[num].data=paddr_read(paddr,len);
+	cache[num].data=hw_mem_read(paddr,len);
 	return cache[num].data;
 }
 
@@ -38,10 +38,10 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 	for(int i=0; i < 8;i++) {
 		if(cache[num + i].tag == tag && cache[num + i].valid == 1) {
 			cache[num + i].data = data;
-			paddr_write(paddr,len,data);
+			hw_mem__write(paddr,len,data);
 			return;
 		}
 	}
-	paddr_write(paddr,len,data);
+	hw_mem_write(paddr,len,data);
 	return;
 }
