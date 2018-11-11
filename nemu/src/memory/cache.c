@@ -9,7 +9,7 @@ void init_cache() {
 }
 
 uint32_t cache_read(paddr_t paddr, size_t len) {
-	uint32_t num = (paddr << 24 >> 25) * 8;
+	uint32_t num = (paddr << 20 >> 25) * 8;
 	uint32_t tag = paddr >> 12;
 	uint32_t addr = paddr << 27 >> 27;
 	for(int i=0; i < 8; i++) {
@@ -35,7 +35,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 }
 
 void cache_write(paddr_t paddr, size_t len, uint32_t data) {
-	uint32_t num = (paddr << 24 >> 25) * 8;
+	uint32_t num = (paddr << 20 >> 25) * 8;
 	uint32_t tag = paddr >> 12;
 	uint32_t addr = paddr << 27 >> 27;
 	for(int i=0; i < 8;i++) {
