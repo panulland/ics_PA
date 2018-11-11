@@ -9,6 +9,7 @@ void init_cache() {
 }
 
 uint32_t cache_read(paddr_t paddr, size_t len) {
+	return hw_mem_read(paddr,len);
 	uint32_t num = (paddr << 24 >> 25) * 8;
 	uint32_t tag = paddr >> 12;
 	uint32_t addr = paddr << 27 >> 27;
