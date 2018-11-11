@@ -1,3 +1,5 @@
+#ifndef __CACHE_H_
+#define __CACHE_H_
 
 struct CacheLine {
 	int valid;
