@@ -1,6 +1,6 @@
 #ifndef __CACHE_H_
 #define __CACHE_H_
-[
+
 #include"nemu.h"
 
 typedef struct {
