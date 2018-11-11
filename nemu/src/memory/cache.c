@@ -27,6 +27,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 			return cache[num + i].data;
 		}
 	}
+	printf("=====");
 	cache[num].tag=tag;
 	cache[num].data=hw_mem_read(paddr,len);
 	return cache[num].data;
