@@ -3,11 +3,11 @@
 
 #include"nemu.h"
 
-struct CacheLine {
+typedef struct {
 	int valid;
 	int tag;
 	char data[64];
-};
+} CacheLine;
 
 void init_cache();
 
