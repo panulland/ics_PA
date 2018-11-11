@@ -10,6 +10,7 @@ void init_cache() {
 }
 
 uint32_t cache_read(paddr_t paddr, size_t len) {
+	return hw_mem_read(paddr,len);
 	uint32_t num = (paddr << 11 >> 25) * 8;
 	uint32_t tag = paddr >> 21;
 	//uint32_t addr = paddr << 18 >> 18;
@@ -35,13 +36,13 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 	uint32_t num = (paddr << 11 >> 25) * 8;
 	uint32_t tag = paddr >> 21;
 	//uint32_t addr = paddr << 18 >> 18;
-	for(int i=0; i < 8;i++) {
+/*	for(int i=0; i < 8;i++) {
 		if(cache[num + i].tag == tag && cache[num + i].valid == 1) {
 			cache[num + i].data = data;
 			hw_mem_write(paddr,len,data);
 			return;
 		}
-	}
+	}*/
 	hw_mem_write(paddr,len,data);
 	return;
 }
