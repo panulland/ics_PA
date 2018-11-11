@@ -11,6 +11,7 @@ void init_cache() {
 
 uint32_t cache_read(paddr_t paddr, size_t len) {
 	//return hw_mem_read(paddr,len);
+	printf ("========");
 	uint32_t num = (paddr << 11 >> 25) * 8;
 	uint32_t tag = paddr >> 21;
 	//uint32_t addr = paddr << 18 >> 18;
@@ -27,7 +28,6 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 			return cache[num + i].data;
 		}
 	}
-	printf("=====");
 	cache[num].tag=tag;
 	cache[num].data=hw_mem_read(paddr,len);
 	return cache[num].data;
