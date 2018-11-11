@@ -22,7 +22,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 			cache[num + i].valid = 1;
 			cache[num + i].tag = tag;
 			for(int j=0;j<32;j++) {
-				cache[num+i].data[j]=hw_mem[addr+j];
+				cache[num+i].data[j]=hw_mem[paddr+j];
 			}
 			return cache[num + i].data[0];
 		}
