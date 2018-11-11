@@ -2,7 +2,7 @@
 struct CacheLine {
 	int valid;
 	int tag;
-	int data;
+	char data[64];
 };
 
 init_cache();
