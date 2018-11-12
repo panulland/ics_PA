@@ -16,8 +16,8 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		size_t len1=32-addr;
 		size_t len2=len-len1;
 		switch(len) {
-			case 2:return (cache_read(paddr,1)) + cache_read(paddr+1,1)<<8;
-			case 4:return cache_read(paddr,len1) + cache_read(paddr+len1,len2)<<(len1*8);
+			case 2:return (cache_read(paddr,1)) + (cache_read(paddr+1,1)<<8);
+			case 4:return cache_read(paddr,len1) + (cache_read(paddr+len1,len2)<<(len1*8));
 		}
 	}
 	uint32_t res = 0;
