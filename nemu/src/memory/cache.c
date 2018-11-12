@@ -18,8 +18,11 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		if(cache[num + i].tag == tag && cache[num + i].valid == 1) {
 			switch(len) {
 				case 1:return cache[num + i].data[addr];
-					   break;
+				       break;
 				case 2:res += cache[num + i].data[addr];
+				       res += cache[num + i].data[addr + 1]<<8;
+				       break;
+				case 4:res += cache[num + i].
 						
 		}
 	}
