@@ -31,14 +31,14 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 			cache[num + i].valid = 1;
 			cache[num + i].tag = tag;
 			for(int j=0;j<32;j++) {
-				cache[num+i].data[j]=hw_mem[paddr+j];
+				cache[num+i].data[j]=hw_mem[paddr-addr+j];
 			}
 			return hw_mem_read(paddr,len);
 		}
 	}
 	cache[num].tag=tag;
 	for(int j=0;j<32;j++) {
-		cache[num].data[j]=hw_mem[paddr+j];
+		cache[num].data[j]=hw_mem[paddr-addr+j];
 	}
 	return hw_mem_write(paddr,len);
 }
