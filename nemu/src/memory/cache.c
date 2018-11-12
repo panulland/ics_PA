@@ -16,8 +16,8 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		size_t len1=32-addr;
 		size_t len2=len-len1;
 		switch(len) {
-			case 2:return (cache_read(paddr,1)<<8) + cache_read(paddr+1,1);
-			case 4:return (cache_read(paddr,len1)<<len2) + cache_read(paddr+len1,len2);
+			case 2:return (cache_read(paddr,1)) + cache_read(paddr+1,1)<<8;
+			case 4:return cache_read(paddr,len1) + cache_read(paddr+len1,len2)<<(len1*8);
 		}
 	}
 	uint32_t res = 0;
@@ -26,17 +26,17 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 			switch(len) {
 				case 1:return cache[num + i].data[addr];
 				       break;
-				case 2:res += cache[num + i].data[addr]<<8;
-				       res += cache[num + i].data[addr + 1];
+				case 2:res += cache[num + i].data[addr];
+				       res += cache[num + i].data[addr + 1]<<8;
 				       return res;
-				case 3:res += cache[num + i].data[addr]<<16;
-				       res += cache[num + i].data[addr+1]<<8;
-				       res += cache[num + i].data[addr+2];
+				case 3:res += cache[num + i].data[addr];
+				       res += cache[num + i].data[addr+1]<<16;
+				       res += cache[num + i].data[addr+2]<<24;
 				       return res;
-				case 4:res += cache[num + i].data[addr]<<24;
-				       res += cache[num + i].data[addr + 1]<<16;
-				       res += cache[num + i].data[addr + 2]<<8;
-				       res += cache[num + i].data[addr + 3];
+				case 4:res += cache[num + i].data[addr];
+				       res += cache[num + i].data[addr + 1]<<8;
+				       res += cache[num + i].data[addr + 2]<<16;
+				       res += cache[num + i].data[addr + 3]<<24;
 				       return res;
 			}
 						
@@ -67,18 +67,18 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 		size_t len1=32-addr;
 		size_t len2=len-len1;
 		switch(len) {
-			case 2:cache_write(paddr,1,data>>8);
-			       cache_write(paddr+1,1,data<<24>>24);
+			case 2:cache_write(paddr,1,data<<24>>24);
+			       cache_write(paddr+1,1,data>>8);
 			       return;
-			case 4:cache_write(paddr,len1,data>>(len2*8));
-			       cache_write(paddr,len2,data<<(32-len2*8)>>(32-len2*8));
+			case 4:cache_write(paddr,len1,data<<(32-len1*8)>>(32-len1*8));
+			       cache_write(paddr,len2,data>>(len1*8));
 			       return;
 		}
 	}
 	for(int i=0; i < 8;i++) {
 		if(cache[num + i].tag == tag && cache[num + i].valid == 1) {
 			for(int j=0;j<len;j++) {
-				cache[num + i].data[addr+j] = data >> (8*(len - 1 -j));
+				cache[num + i].data[addr+j] = data << (32 - 8*(j+1)) >> 24;
 			}
 			hw_mem_write(paddr,len,data);
 			return;
