@@ -81,6 +81,7 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 		if(cache[num + i].tag == tag && cache[num + i].valid == 1) {
 			for(int j=0;j<len;j++) {
 				cache[num + i].data[addr+j] = data >> (8*(len - 1 -j));
+			}
 			hw_mem_write(paddr,len,data);
 			return;
 		}
