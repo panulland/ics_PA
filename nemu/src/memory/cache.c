@@ -29,16 +29,15 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 				case 2:res += cache[num + i].data[addr]<<8;
 				       res += cache[num + i].data[addr + 1];
 				       return res;
-				       break;
 				case 3:res += cache[num + i].data[addr]<<16;
 				       res += cache[num + i].data[addr+1]<<8;
 				       res += cache[num + i].data[addr+2];
+				       return res;
 				case 4:res += cache[num + i].data[addr]<<24;
 				       res += cache[num + i].data[addr + 1]<<16;
 				       res += cache[num + i].data[addr + 2]<<8;
 				       res += cache[num + i].data[addr + 3];
 				       return res;
-				       break;
 			}
 						
 		}
