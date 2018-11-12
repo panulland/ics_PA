@@ -9,7 +9,6 @@ void init_cache() {
 }
 
 uint32_t cache_read(paddr_t paddr, size_t len) {
-	return hw_mem_read(paddr,len);
 	uint32_t num = (paddr << 20 >> 25) * 8;
 	uint32_t tag = paddr >> 12;
 	uint32_t addr = paddr << 27 >> 27;
@@ -72,7 +71,7 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 			       cache_write(paddr+1,1,data>>8);
 			       return;
 			case 4:cache_write(paddr,len1,data<<(32-len1*8)>>(32-len1*8));
-			       cache_write(paddr,len2,data>>(len1*8));
+			       cache_write(paddr+len1,len2,data>>(len1*8));
 			       return;
 		}
 	}
