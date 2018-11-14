@@ -25,22 +25,6 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 	uint32_t res = 0;
 	for(int i=0; i < 8; i++) {
 		if(cache[num + i].tag == tag && cache[num + i].valid == 1) {
-			/*switch(len) {
-				case 1:return cache[num + i].data[addr];
-				       break;
-				case 2:res += cache[num + i].data[addr];
-				       res += cache[num + i].data[addr + 1]<<8;
-				       return res;
-				case 3:res += cache[num + i].data[addr];
-				       res += cache[num + i].data[addr+1]<<8;
-				       res += cache[num + i].data[addr+2]<<16;
-				       return res;
-				case 4:res += cache[num + i].data[addr];
-				       res += cache[num + i].data[addr + 1]<<8;
-				       res += cache[num + i].data[addr + 2]<<16;
-				       res += cache[num + i].data[addr + 3]<<24;
-				       return res;
-			}*/
 			memcpy(&res,cache[num+i].data+addr,len);
 			return res;		
 		}
@@ -80,9 +64,6 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 	}
 	for(int i=0; i < 8;i++) {
 		if(cache[num + i].tag == tag && cache[num + i].valid == 1) {
-			/*for(int j=0;j<len;j++) {
-				cache[num + i].data[addr+j] = data << (32 - 8*(j+1)) >> 24;
-			}*/
 			memcpy(cache[num+i].data+addr,&data,len);
 			hw_mem_write(paddr,len,data);
 			return;
