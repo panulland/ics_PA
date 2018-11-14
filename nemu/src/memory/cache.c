@@ -1,5 +1,7 @@
 #include "memory/cache.h"
 #include "memory/memory.h"
+#include <memory.h>
+#include <stdio.h>
 
 void init_cache() {
 	for(int i=0;i < 1024;i++) {
@@ -23,7 +25,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 	uint32_t res = 0;
 	for(int i=0; i < 8; i++) {
 		if(cache[num + i].tag == tag && cache[num + i].valid == 1) {
-			switch(len) {
+			/*switch(len) {
 				case 1:return cache[num + i].data[addr];
 				       break;
 				case 2:res += cache[num + i].data[addr];
@@ -38,8 +40,9 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 				       res += cache[num + i].data[addr + 2]<<16;
 				       res += cache[num + i].data[addr + 3]<<24;
 				       return res;
-			}
-						
+			}*/
+			memcpy(&res,cache[num+i].data+addr,len);
+			return res;		
 		}
 	}
 	for(int i=0; i < 8; i++) {
@@ -77,9 +80,10 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 	}
 	for(int i=0; i < 8;i++) {
 		if(cache[num + i].tag == tag && cache[num + i].valid == 1) {
-			for(int j=0;j<len;j++) {
+			/*for(int j=0;j<len;j++) {
 				cache[num + i].data[addr+j] = data << (32 - 8*(j+1)) >> 24;
-			}
+			}*/
+			memcpy(cache[num+i].data+addr,&data,len);
 			hw_mem_write(paddr,len,data);
 			return;
 		}
