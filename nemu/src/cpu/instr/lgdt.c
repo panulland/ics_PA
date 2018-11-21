@@ -7,6 +7,7 @@ make_instr_func(lgdt) {
 	opr_src.sreg = SREG_CS; 
 	opr_src.addr = eip + 2;
     operand_read(&opr_src);
+    print_asm_1("lgdt","",6,&opr_src);
     OPERAND i1,i2;
     i1.data_size=16;
     i1.type=OPR_IMM;
@@ -20,5 +21,5 @@ make_instr_func(lgdt) {
     operand_read(&i2);
     cpu.gdtr.limit=i1.val;
     cpu.gdtr.base=i2.val;
-    return 5; 
+    return 6; 
 }
