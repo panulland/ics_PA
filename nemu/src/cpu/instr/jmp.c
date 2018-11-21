@@ -59,7 +59,7 @@ make_instr_func(jmp_far_imm) {
 	operand_read(&i1);
 	operand_read(&i2);
 	load_sreg(i1.val);
-	print_asm_1("jmp","",7,&i2);
+	print_asm_2("ljmp","",7,&i1,&i2);
 	cpu.eip=i2.val;
 	cpu.cs.val=i1.val;
 	return 0;
