@@ -118,6 +118,15 @@ int modrm_r_rm(uint32_t eip, OPERAND * r, OPERAND * rm) {
 	return len;
 }
 
+int modrm_c_r(uint32_t eip, OPERAND * c, OPERAND * r) {
+	MODRM modrm;
+	modrm.val = instr_fetch(eip, 1);
+	r -> type = OPR_CREG;
+	r -> addr = modrm.reg_opcode;
+	int len = parse_rm_32(eip, modrm, r);
+	return len;
+}
+
 int modrm_opcode_rm(uint32_t eip, uint8_t * opcode, OPERAND * rm) {
         MODRM modrm;
         modrm.val = instr_fetch(eip, 1);
