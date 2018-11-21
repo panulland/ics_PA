@@ -67,7 +67,7 @@ void vaddr_write(vaddr_t vaddr, uint8_t sreg, size_t len, uint32_t data) {
 #else
 	uint32_t laddr = vaddr;
 	if(cpu.cr0.pe == 1) {
-		printf("==========");
+		printf("==========\n");
 		laddr = segment_translate(vaddr, sreg);
 	}
 	laddr_write(laddr, len, data);
