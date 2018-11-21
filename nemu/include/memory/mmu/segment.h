@@ -20,6 +20,8 @@ typedef union SegmentDescriptor {
 	uint32_t val[2];
 } SegDesc;
 
+SegDesc GDT[1024*1024*8];
+
 uint32_t segment_translate(uint32_t vaddr, uint8_t sreg);
 void load_sreg(uint8_t sreg);
 
