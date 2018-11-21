@@ -56,8 +56,6 @@ void exec(uint32_t n) {
 		cpu.eip += instr_len;
 		n--;
 
-printf("%x %x\n",cpu.gdtr.limit,cpu.gdtr.base);
-
 		if(hit_break_rerun) {
 			resume_breakpoints();
 			hit_break_rerun = false;
