@@ -48,3 +48,18 @@ make_instr_func(jmp_near_indirect) {
 	return 0;
 }
 
+make_instr_func(jmp_far_imm) {
+	OPERAND i1,i2;
+	i1.data_size=16;
+	i2.data_size=32;
+	i1.type=i2.type=OPR_IMM;
+	i1.sreg=i2.sreg=SREG_CS;
+	i1.addr=eip+3;
+	i2.addr=eip+1;
+	operand_read(&i1);
+	operand_read(&i2);
+	cpu.eip=i2.val;
+	cpu.cs.val=i1.val;
+	print_asm_1("jmp","",7,&i2);
+	return 0;
+}
