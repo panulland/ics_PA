@@ -112,12 +112,6 @@ void print_asm_3(char * instr, char * suffix, uint8_t len, OPERAND * opr_1, OPER
 	opr_src.type=OPR_CREG; \
 	opr_src.addr=opr_src.addr & 0x3;
 
-#define decode_operand_rm2s \
-	len += modrm_r_rm(eip + 1, &opr_dest, &opr_src); \
-	opr_dest.type = OPR_SREG; \
-	opr_dest.addr = opr_dest.addr & 0x7; \
-	load_sreg(opr_dest.addr);
-
 #define decode_operand_i2rm \
 	len += modrm_rm(eip + 1, &opr_dest); \
 	opr_src.type = OPR_IMM; \

@@ -20,7 +20,21 @@ make_instr_impl_2op(mov, o, a, b)
 make_instr_impl_2op(mov, o, a, v)
 make_instr_impl_2op(mov, r, c, l)
 make_instr_impl_2op(mov, c, r, l)
-make_instr_impl_2op(mov, rm, s, w)
+
+make_instr_func(mov_rm2s_w) {
+	int len = 1;
+	OPERAND opr_src, opr_dest;
+	opr_src.data_size=opr_dest.data_size=16;
+	len += modrm_r_rm(eip + 1, &opr_dest, &opr_src);
+	opr_dest.type=OPR_SREG;
+	opr_dest.addr=opr_dest.addr & 0x7;
+	operand_read(&opr_src);
+	opr_dest.val = opr_src.val;
+	operand_write(&opr_dest);
+	load_sreg(opr_dest.addr);
+	print_asm_2("mov","",len,&opr_src,&opr_dest);
+	return len;
+}
 
 /*
 make_instr_func(mov_r2rm_b) {
