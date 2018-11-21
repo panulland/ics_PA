@@ -11,6 +11,7 @@ make_instr_func(jmp_near) {
 
 	int offset = sign_ext(rel.val, data_size);
 	print_asm_1("jmp", "", 1+data_size/8, &rel);
+	printf("%x %x",cpu.gdtr.base,cpu.gdtr.limit);
 
 	cpu.eip += offset;
 
