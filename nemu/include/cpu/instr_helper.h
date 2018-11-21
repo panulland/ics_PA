@@ -85,6 +85,10 @@ void print_asm_3(char * instr, char * suffix, uint8_t len, OPERAND * opr_1, OPER
 	opr_src.type = OPR_REG; \
 	opr_src.addr = opcode & 0x7;
 
+#define decode_operand_c \
+	opr_src.type = OPR_CREG; \
+	opr_src.addr = opcode & 0x7;
+
 // AL = AX = EAX
 #define decode_operand_a \
 	opr_src.type = OPR_REG; \
@@ -100,6 +104,12 @@ void print_asm_3(char * instr, char * suffix, uint8_t len, OPERAND * opr_1, OPER
 	len += modrm_r_rm(eip + 1, &opr_src, &opr_dest);
 
 #define decode_operand_rm2r \
+	len += modrm_r_rm(eip + 1, &opr_dest, &opr_src);
+
+#define decode_operand_r2c \
+	len += modrm_r_rm(eip + 1, &opr_src, &opr_dest);
+
+#define decode_operand_c2r \
 	len += modrm_r_rm(eip + 1, &opr_dest, &opr_src);
 
 #define decode_operand_i2rm \
