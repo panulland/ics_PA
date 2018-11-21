@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "cpu.h": "c",
-        "operand.h": "c"
+        "operand.h": "c",
+        "memory.h": "c",
+        "nemu.h": "c"
     }
 }
