@@ -3,6 +3,7 @@
         "cpu.h": "c",
         "operand.h": "c",
         "memory.h": "c",
-        "nemu.h": "c"
+        "nemu.h": "c",
+        "mm_io.h": "c"
     }
 }
