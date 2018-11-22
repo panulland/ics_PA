@@ -61,6 +61,6 @@ make_instr_func(jmp_far_imm) {
 	print_asm_2("ljmp","",7,&i1,&i2);
 	cpu.eip=i2.val;
 	cpu.cs.val=i1.val;
-	load_sreg(SREG_CS);
+	//load_sreg(SREG_CS);
 	return 0;
 }
