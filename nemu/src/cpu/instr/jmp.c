@@ -54,7 +54,7 @@ make_instr_func(jmp_far_imm) {
 	i2.data_size=32;
 	i1.type=i2.type=OPR_IMM;
 	i1.sreg=i2.sreg=SREG_CS;
-	i1.addr=eip+3;
+	i1.addr=eip+5;
 	i2.addr=eip+1;
 	operand_read(&i1);
 	operand_read(&i2);
