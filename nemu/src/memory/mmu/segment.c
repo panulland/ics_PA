@@ -16,7 +16,7 @@ void load_sreg(uint8_t sreg) {
 	SegDesc s;
 	s.val[0] = s.val[1] = 0;
 	printf("%x %x %x\n",cpu.gdtr.base,cpu.gdtr.limit,cpu.segReg[sreg].index);
-	memcpy(&s.val, hw_mem + 0x3004c/*cpu.gdtr.base + cpu.segReg[sreg].index * 8*/, 4);
+	memcpy(&s.val[0], hw_mem + 0x3004c/*cpu.gdtr.base + cpu.segReg[sreg].index * 8*/, 4);
 	printf("%x %x\n",s.val[0],s.val[1]);
 	cpu.segReg[sreg].base = (s.base_15_0) + (s.base_23_16 << 16) + (s.base_31_24 << 24);
 	cpu.segReg[sreg].limit = (s.limit_15_0) + (s.limit_19_16 << 16);
