@@ -15,7 +15,7 @@ uint32_t segment_translate(uint32_t offset, uint8_t sreg) {
 void load_sreg(uint8_t sreg) {
 	SegDesc s;
 	s.val[0] = s.val[1] = 0;
-	printf("%x %x %x\n",cpu.gdtr.base,cpu.gdtr.limit,cpu.segReg[sreg].index);
+	printf("%x %x\n",s.val[0],s.val[1]);
 	memcpy(&s, hw_mem + cpu.gdtr.base + cpu.segReg[sreg].index * 8, 8);
 	printf("%x %x\n",s.val[0],s.val[1]);
 	printf("%x %x %x\n",s.base_15_0,s.base_23_16,s.base_31_24);
