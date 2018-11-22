@@ -9,14 +9,11 @@ make_instr_func(lgdt) {
     operand_read(&opr_src);
     print_asm_1("lgdt","",6,&opr_src);
     OPERAND i1,i2;
-    printf("%x\n",opr_src.val);
     i1.data_size=16;
-    i1.type=OPR_IMM;
-    i1.sreg=SREG_CS;
+    i1.type=OPR_MEM;
     i1.addr=opr_src.val;
     i2.data_size=32;
-    i2.type=OPR_IMM;
-    i2.sreg=SREG_CS;
+    i2.type=OPR_MEM;
     i2.addr=opr_src.val+3;
     operand_read(&i1);
     operand_read(&i2);
