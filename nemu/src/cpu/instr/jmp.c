@@ -58,7 +58,6 @@ make_instr_func(jmp_far_imm) {
 	i2.addr=eip+1;
 	operand_read(&i1);
 	operand_read(&i2);
-	printf("%x\n",i1.val);
 	print_asm_2("ljmp","",7,&i1,&i2);
 	cpu.eip=i2.val;
 	cpu.cs.val=i1.val;
