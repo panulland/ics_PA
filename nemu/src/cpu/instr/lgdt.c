@@ -23,6 +23,7 @@ make_instr_func(lgdt) {
     uint32_t g2=0;
     memcpy(&g1, hw_mem + opr_src.val, 2);
     memcpy(&g2, hw_mem + opr_src.val + 3, 4);
+    printf("%x %x\n",g1,g2);
     cpu.gdtr.base=g2;
     cpu.gdtr.limit=g1;
     return 6; 
