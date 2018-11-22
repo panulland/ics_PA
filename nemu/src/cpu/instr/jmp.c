@@ -62,6 +62,6 @@ make_instr_func(jmp_far_imm) {
 	printf("============");
 	cpu.eip=i2.val;
 	cpu.cs.val=i1.val;
-	load_sreg(SREG_CS);
+	//load_sreg(SREG_CS);
 	return 0;
 }
