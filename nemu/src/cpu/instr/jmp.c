@@ -49,6 +49,7 @@ make_instr_func(jmp_near_indirect) {
 }
 
 make_instr_func(jmp_far_imm) {
+	printf("===========");
 	OPERAND i1,i2;
 	i1.data_size=16;
 	i2.data_size=32;
