@@ -24,8 +24,8 @@ void load_sreg(uint8_t sreg) {
 	cpu.segReg[sreg].type = s.type;
 	cpu.segReg[sreg].soft_use = s.soft_use;
 	cpu.segReg[sreg].privilege_level = s.privilege_level;
-	assert(cpu.segReg[sreg].base = 0);
-	assert(s.granularity=0);
+	//assert(cpu.segReg[sreg].base = 0);
+	//assert(s.granularity=0);
 	/* TODO: load the invisibile part of the segment register 'sreg' by reading the GDT.
 	 * The visible part of 'sreg' should be assigned by mov or ljmp already.
 	 */
