@@ -16,7 +16,7 @@ make_instr_func(leave) {
 	OPERAND m;
 	m.data_size=data_size;
 	m.type=OPR_MEM;
-	m.sreg=SREG_DS;
+	m.sreg=SREG_ES;
 	m.addr=cpu.esp;
 	operand_read(&m);
 	cpu.esp+=4;
