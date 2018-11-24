@@ -30,7 +30,7 @@ void load_sreg(uint8_t sreg) {
 	if(cpu.segReg[sreg].limit != 0xfffff)
 	assert(cpu.segReg[sreg].limit != 0xfffff);
 	if(s.granularity != 0)
-	assert(s.granularity!=0);
+	assert(s.granularity!=0);*/
 	/* TODO: load the invisibile part of the segment register 'sreg' by reading the GDT.
 	 * The visible part of 'sreg' should be assigned by mov or ljmp already.
 	 */
