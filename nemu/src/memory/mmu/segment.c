@@ -14,10 +14,10 @@ uint32_t segment_translate(uint32_t offset, uint8_t sreg) {
 // load the invisible part of a segment register
 void load_sreg(uint8_t sreg) {
 	SegDesc s;
-	s.val[0] = s.val[1] = 0;
+	//s.val[0] = s.val[1] = 0;
 	memcpy(&s, hw_mem + cpu.gdtr.base + cpu.segReg[sreg].index * 8, 8);
-	printf("%x %x\n",s.val[0],s.val[1]);
-	printf("%x %x %x %x\n",s.limit_15_0,s.base_15_0,s.type,s.base_31_24);
+	//printf("%x %x\n",s.val[0],s.val[1]);
+	//printf("%x %x %x %x\n",s.limit_15_0,s.base_15_0,s.type,s.base_31_24);
 	cpu.segReg[sreg].base = (s.base_15_0) + (s.base_23_16 << 16) + (s.base_31_24 << 24);
 	cpu.segReg[sreg].limit = (s.limit_15_0) + (s.limit_19_16 << 16);
 	cpu.segReg[sreg].type = s.type;
