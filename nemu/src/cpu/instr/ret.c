@@ -4,6 +4,7 @@ make_instr_func(ret_near) {
 	OPERAND m;
 	m.data_size=data_size;
 	m.type=OPR_MEM;
+	m.sreg=SREG_DS;
 	m.addr=cpu.esp;
 	operand_read(&m);
 
@@ -18,6 +19,7 @@ make_instr_func(ret_near_imm16) {
 	OPERAND m,i;
 	m.data_size=data_size;
 	m.type=OPR_MEM;
+	m.sreg=SREG_DS;
 	m.addr=cpu.esp;
 	i.data_size=16;
 	i.type=OPR_IMM;
