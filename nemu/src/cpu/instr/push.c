@@ -9,6 +9,7 @@ static void instr_execute_1op() {
 	OPERAND opr_dest;
 	opr_dest.data_size=data_size;
 	opr_dest.type = OPR_MEM;
+	opr_dest.sreg = SREG_DS;
 	cpu.esp -= 4;
 	opr_dest.addr = cpu.esp;
 	opr_dest.val = opr_src.val;
