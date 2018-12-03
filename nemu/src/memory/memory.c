@@ -54,7 +54,18 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 }
 
 void laddr_write(laddr_t laddr, size_t len, uint32_t data) {
+	assert(len == 1 || len == 2 || len == 4);
+#ifndef IA32_PAGE
 	paddr_write(laddr, len, data);
+#else
+	if(cpu.cr0.pg == 1 &&  cpu.cr0.pe == 1) {
+		uint32_t paddr = page_translate(laddr);
+		return paddr_write(paddr, len);
+	} 
+	else { 
+		return paddr_write(laddr, len);
+	}
+#endif
 }
 
 
