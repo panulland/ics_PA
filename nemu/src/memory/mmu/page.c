@@ -11,7 +11,6 @@ paddr_t page_translate(laddr_t laddr) {
 	uint32_t offset = laddr << 20 >> 20;
 	PDE pde;
 	PTE pte;
-	printf("=========");
 	memcpy(&pde.val, hw_mem + ((cpu.cr3.pdbr << 12) + dir * 4), 4);
 	assert(pde.present == 1);
 	memcpy(&pte.val, hw_mem + ((pde.page_frame << 12) + page * 4), 4);
