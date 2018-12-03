@@ -103,7 +103,7 @@ void print_asm_3(char * instr, char * suffix, uint8_t len, OPERAND * opr_1, OPER
 	len += modrm_r_rm(eip + 1, &opr_dest, &opr_src);
 
 #define decode_operand_r2c \
-	len += modrm_r_rm(eip + 1, &opr_dest, &opr_src); \
+	len += modrm_r_rm(eip + 1, &opr_src, &opr_dest); \
 	opr_dest.type=OPR_CREG; \
 	opr_dest.addr=opr_dest.addr & 0x3;
 
