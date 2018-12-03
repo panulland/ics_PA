@@ -15,7 +15,7 @@ paddr_t page_translate(laddr_t laddr) {
 	assert(pde.present == 1);
 	memcpy(&pte.val, hw_mem + ((pde.page_frame << 12) + page * 4), 4);
 	assert(pte.present == 1);
-	printf("laddr %x\ndir %x\npage %x\noffset %x\n",laddr,dir,page,offset);
+	//printf("laddr %x\ndir %x\npage %x\noffset %x\n",laddr,dir,page,offset);
 	return (pte.page_frame << 12) + offset;
 #else	
 	return tlb_read(laddr) | (laddr & PAGE_MASK);;
