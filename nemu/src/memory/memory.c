@@ -60,10 +60,10 @@ void laddr_write(laddr_t laddr, size_t len, uint32_t data) {
 #else
 	if(cpu.cr0.pg == 1 &&  cpu.cr0.pe == 1) {
 		uint32_t paddr = page_translate(laddr);
-		return paddr_write(paddr, len);
+		return paddr_write(paddr, len, data);
 	} 
 	else { 
-		return paddr_write(laddr, len);
+		return paddr_write(laddr, len, data);
 	}
 #endif
 }
