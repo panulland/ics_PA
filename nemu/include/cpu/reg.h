@@ -30,6 +30,11 @@ typedef union {
 }CR3;
 
 typedef struct {
+	uint32_t limit :16;
+	uint32_t base :32;
+}IDTR;
+
+typedef struct {
 	// the 16-bit visible part, i.e., the selector
 	union {
 		uint16_t val;
