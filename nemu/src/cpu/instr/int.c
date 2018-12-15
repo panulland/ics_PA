@@ -8,7 +8,7 @@ make_instr_func(int_) {
     i.sreg = SREG_CS;
     i.addr = cpu.eip + 1;
     operand_read(&i);
-    raise_sw_intr(i.val);
     print_asm_1("int","",2,&i);
+    raise_sw_intr(i.val);
     return 2;
 }
