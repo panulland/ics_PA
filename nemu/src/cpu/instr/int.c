@@ -14,5 +14,21 @@ make_instr_func(int_) {
 }
 
 make_instr_func(iret) {
-    return 2;
+    OPERAND m;
+    m.data_size = data_size;
+    m.type = OPR_MEM;
+    m.sreg = SREG_ES;
+    m.addr = cpu.esp;
+    operand_read(&m);
+    cpu.eip = m.val;
+    cpu.esp += 4;
+    m.addr = cpu.esp;
+    operand_read(&m);
+    cpu.cs.val = m.val;
+    cpu.esp += 4;
+    m.addr = cpu.esp;
+    operand_read(&m);
+    cpu.eflags.val = m.val;
+    print_asm_0("iret","",1);
+    return 0;
 }
