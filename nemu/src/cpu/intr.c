@@ -29,6 +29,7 @@ void raise_intr(uint8_t intr_no) {
 		cpu.eflags.IF = 0;
 	}
 	cpu.eip = gate.offset_15_0 + (gate.offset_31_16 << 16);
+	printf("%x\n",cpu.eip);
 #endif
 }
 
