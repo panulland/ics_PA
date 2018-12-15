@@ -9,6 +9,7 @@ void raise_intr(uint8_t intr_no) {
 	uint32_t index = intr_no;
 	printf("%x\n",cpu.idtr.base + index*8);
 	memcpy(&index,hw_mem+cpu.idtr.base+index*8,4);
+	assert(0);
 	printf("%x\n",index);
 	memcpy(&gate, hw_mem + (cpu.idtr.base + index * 8), 8);
 	cpu.esp -= 4;
