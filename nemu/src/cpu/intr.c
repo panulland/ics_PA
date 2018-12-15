@@ -8,8 +8,8 @@ void raise_intr(uint8_t intr_no) {
 	GateDesc gate;
 	printf("++++++++++++");
 	memcpy(&gate, hw_mem + cpu.idtr.base + intr_no * 8, 8);
+	printf("%x %x",gate.val[0],gate.val[1]);
 	assert(0);
-	printf("1");
 	cpu.esp -= 4;
 	OPERAND temp;
 	temp.data_size = data_size;
