@@ -25,6 +25,7 @@ make_instr_func(iret) {
     m.addr = cpu.esp;
     operand_read(&m);
     cpu.cs.val = m.val;
+    load_sreg(SREG_CS);
     cpu.esp += 4;
     m.addr = cpu.esp;
     operand_read(&m);
