@@ -2,7 +2,7 @@
 
 make_instr_func(lgdt) {
     OPERAND opr_src,rm;
-    rm.data_size=32;
+    rm.data_size=data_size;
     int len = 1;
     len += modrm_rm(eip+1,&rm);
     operand_read(&rm);
@@ -10,14 +10,14 @@ make_instr_func(lgdt) {
     opr_src.data_size=data_size;
     opr_src.type = OPR_IMM; 
 	opr_src.sreg = SREG_CS; 
-	opr_src.addr = eip + 2;
+	opr_src.addr = rm.val;
     operand_read(&opr_src);
-    print_asm_1("lgdt","",len + 1,&opr_src);
+    print_asm_1("lgdt","",len + 1,&rm);
     uint32_t g1=0;
     uint32_t g2=0;
     memcpy(&g1, hw_mem + opr_src.val, 2);
     memcpy(&g2, hw_mem + opr_src.val + 2, 4);
     cpu.gdtr.base=g2;
     cpu.gdtr.limit=g1;
-    return 6; 
+    return len; 
 }
