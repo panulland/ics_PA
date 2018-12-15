@@ -4,6 +4,7 @@
         "operand.h": "c",
         "memory.h": "c",
         "nemu.h": "c",
-        "mm_io.h": "c"
+        "mm_io.h": "c",
+        "intr.h": "c"
     }
 }
