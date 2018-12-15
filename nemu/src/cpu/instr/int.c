@@ -10,7 +10,7 @@ make_instr_func(int_) {
     operand_read(&i);
     print_asm_1("int","",2,&i);
     raise_sw_intr(i.val);
-    return 2;
+    return 0;
 }
 
 make_instr_func(iret) {
