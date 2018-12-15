@@ -11,7 +11,7 @@ void raise_intr(uint8_t intr_no) {
 	uint32_t index = intr_no;
 	printf("%x\n",index);
 	printf("%x %x\n",gate.val[0],gate.val[1]);
-	memcpy(&gate, hw_mem + cpu.idtr.base + index * 8, 8);
+	memcpy(&gate.val, hw_mem + cpu.idtr.base + index * 8, 8);
 	cpu.esp -= 4;
 	OPERAND temp;
 	temp.data_size = data_size;
