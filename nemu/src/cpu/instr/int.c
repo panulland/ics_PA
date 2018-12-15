@@ -14,5 +14,5 @@ make_instr_func(int_) {
 }
 
 make_instr_func(iret) {
-    
+    return 2;
 }
