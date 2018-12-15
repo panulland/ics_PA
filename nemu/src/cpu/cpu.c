@@ -54,7 +54,7 @@ void exec(uint32_t n) {
 	while( n > 0 && nemu_state == NEMU_RUN) {
 		instr_len = exec_inst();
 		cpu.eip += instr_len;
-		n--;
+		n--; 
 
 		if(hit_break_rerun) {
 			resume_breakpoints();
@@ -89,6 +89,7 @@ void exec(uint32_t n) {
 #ifdef IA32_INTR
 		// check for interrupt
 		if(cpu.intr && cpu.eflags.IF) {
+			printf("============\n");
 			// get interrupt number
 			uint8_t intr_no = i8259_query_intr_no(); // get interrupt number
 			assert(intr_no != I8259_NO_INTR);
