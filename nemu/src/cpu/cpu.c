@@ -89,11 +89,11 @@ void exec(uint32_t n) {
 #ifdef IA32_INTR
 		// check for interrupt
 		if(cpu.intr && cpu.eflags.IF) {
-			printf("============\n");
 			// get interrupt number
 			uint8_t intr_no = i8259_query_intr_no(); // get interrupt number
 			assert(intr_no != I8259_NO_INTR);
 			i8259_ack_intr(); // tell the PIC interrupt info received
+			printf("%x\n", intr_no);
 			raise_intr(intr_no); // raise intrrupt to turn into kernel handler
 		}
 #endif
