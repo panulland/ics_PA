@@ -20,6 +20,7 @@ make_instr_func(iret) {
     m.sreg = SREG_ES;
     m.addr = cpu.esp;
     operand_read(&m);
+    print_asm_0("iret","",1);
     cpu.eip = m.val;
     cpu.esp += 4;
     m.addr = cpu.esp;
@@ -30,6 +31,5 @@ make_instr_func(iret) {
     m.addr = cpu.esp;
     operand_read(&m);
     cpu.eflags.val = m.val;
-    print_asm_0("iret","",1);
     return 0;
 }
