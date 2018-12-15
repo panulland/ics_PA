@@ -5,6 +5,7 @@
         "memory.h": "c",
         "nemu.h": "c",
         "mm_io.h": "c",
-        "intr.h": "c"
+        "intr.h": "c",
+        "i8259_pic.h": "c"
     }
 }
