@@ -11,8 +11,8 @@ make_instr_func(lgdt) {
     i2.data_size = 16;
     i1.sreg=i2.sreg=SREG_CS;
     i1.type=i2.type=OPR_IMM;
-    i1.addr=opr_src.mem_addr.disp + 2;
-    i2.addr=opr_src.mem_addr.disp;
+    i1.addr=opr_src.addr + 2;
+    i2.addr=opr_src.addr;
     operand_read(&i1);
     operand_read(&i2);
     cpu.gdtr.base=i1.val;
