@@ -31,5 +31,6 @@ make_instr_func(iret) {
     m.addr = cpu.esp;
     operand_read(&m);
     cpu.eflags.val = m.val;
+    cpu.esp += 4;
     return 0;
 }
