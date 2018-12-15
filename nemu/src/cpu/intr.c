@@ -7,6 +7,7 @@ void raise_intr(uint8_t intr_no) {
 #ifdef IA32_INTR
 	GateDesc gate;
 	memcpy(&gate, hw_mem + cpu.idtr.base + intr_no * 8, 8);
+	printf("1");
 	cpu.esp -= 4;
 	OPERAND temp;
 	temp.data_size = data_size;
@@ -23,6 +24,7 @@ void raise_intr(uint8_t intr_no) {
 	temp.addr = cpu.esp;
 	temp.val = cpu.eip;
 	operand_write(&temp);
+	printf("%x\n",cpu.eip);
 	cpu.eip = gate.offset_15_0 + (gate.offset_31_16 << 16);
 #endif
 }
