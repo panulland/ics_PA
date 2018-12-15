@@ -7,7 +7,8 @@ void raise_intr(uint8_t intr_no) {
 #ifdef IA32_INTR
 	GateDesc gate;
 	uint32_t index = intr_no;
-	memcpy(&gate, hw_mem + (cpu.idtr.base + index * 8), 8);
+	gate.val[0] = laddr_read(cpu.idtr.base + index * 8, 4);
+	gate.val[1] = laddr_read(cpu.idtr.base + index * 8 + 4, 4);
 	cpu.esp -= 4;
 	OPERAND temp;
 	temp.data_size = data_size;
