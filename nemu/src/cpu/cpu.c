@@ -55,7 +55,7 @@ void exec(uint32_t n) {
 		instr_len = exec_inst();
 		cpu.eip += instr_len;
 		n--;
-		
+
 		if(hit_break_rerun) {
 			resume_breakpoints();
 			hit_break_rerun = false;
