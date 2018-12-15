@@ -13,3 +13,49 @@ static void instr_execute_1op() {
 }
 
 make_instr_impl_1op(pop,r,v)
+
+make_instr_func(popa) {
+	OPERAND m,r;
+	m.data_size = r.data_size = data_size;
+	m.type = OPR_MEM;
+	r.type = OPR_REG;
+	m.sreg = SREG_ES;
+	m.addr = cpu.esp;
+	operand_read(&m);
+	r.addr = REG_EDI;
+	r.val = m.val;
+	operand_write(&r);
+	cpu.esp += 4;
+	operand_read(&m);
+	r.addr = REG_ESI;
+	r.val = m.val;
+	operand_write(&r);
+	cpu.esp += 4;
+	operand_read(&m);
+	r.addr = REG_EBP;
+	r.val = m.val;
+	operand_write(&r);
+	cpu.esp += 8;
+	operand_read(&m);
+	r.addr = REG_EBX;
+	r.val = m.val;
+	operand_write(&r);
+	cpu.esp += 4;
+	operand_read(&m);
+	r.addr = REG_EDX;
+	r.val = m.val;
+	operand_write(&r);
+	cpu.esp += 4;
+	operand_read(&m);
+	r.addr = REG_ECX;
+	r.val = m.val;
+	operand_write(&r);
+	cpu.esp += 4;
+	operand_read(&m);
+	r.addr = REG_EAX;
+	r.val = m.val;
+	operand_write(&r);
+	cpu.esp += 4;
+	print_asm_0("popa","",1);
+	return 1;
+}
