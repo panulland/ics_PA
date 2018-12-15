@@ -7,6 +7,8 @@
         "mm_io.h": "c",
         "intr.h": "c",
         "i8259_pic.h": "c",
-        "instr.h": "c"
+        "instr.h": "c",
+        "common.h": "c",
+        "x86.h": "c"
     }
 }
