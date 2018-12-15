@@ -6,6 +6,7 @@
         "nemu.h": "c",
         "mm_io.h": "c",
         "intr.h": "c",
-        "i8259_pic.h": "c"
+        "i8259_pic.h": "c",
+        "instr.h": "c"
     }
 }
