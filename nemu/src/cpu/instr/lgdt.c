@@ -12,7 +12,7 @@ make_instr_func(lgdt) {
 	opr_src.sreg = SREG_CS; 
 	opr_src.addr = eip + 2;
     operand_read(&opr_src);
-    print_asm_1("lgdt","",6,&opr_src);
+    print_asm_1("lgdt","",len,&opr_src);
     uint32_t g1=0;
     uint32_t g2=0;
     memcpy(&g1, hw_mem + opr_src.val, 2);
