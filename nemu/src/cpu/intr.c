@@ -25,6 +25,7 @@ void raise_intr(uint8_t intr_no) {
 	temp.addr = cpu.esp;
 	temp.val = cpu.eip;
 	operand_write(&temp);
+	printf("%x\n",cpu.eflags.IF);
 	if(gate.type == 0xe) {
 		cpu.eflags.IF = 0;
 	}
