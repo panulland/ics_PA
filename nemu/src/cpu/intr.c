@@ -6,10 +6,9 @@
 void raise_intr(uint8_t intr_no) {
 #ifdef IA32_INTR
 	GateDesc gate;
-	
 	printf("++++++++++++");
-	assert(0);
 	memcpy(&gate, hw_mem + cpu.idtr.base + intr_no * 8, 8);
+	assert(0);
 	printf("1");
 	cpu.esp -= 4;
 	OPERAND temp;
