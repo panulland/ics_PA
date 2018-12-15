@@ -20,3 +20,61 @@ make_instr_impl_1op(push,r,v)
 make_instr_impl_1op(push,rm,v)
 make_instr_impl_1op(push,i,v)
 make_instr_impl_1op(push,i,b)
+
+make_instr_func(pusha) {
+	uint32_t temp;
+	temp = cpu.esp;
+	OPERAND r,m;
+	r.data_size = m.data_size = data_size;
+	m.type = OPR_MEM;
+	m.sreg = SREG_ES;
+	r.type = OPR_REG;
+	r.addr = REG_EAX;
+	cpu.esp -= 4;
+	m.addr = cpu.esp;
+	operand_read(&r);
+	m.val = r.val;
+	operand_write(&m);
+	r.addr = REG_ECX;
+	cpu.esp -= 4;
+	m.addr = cpu.esp;
+	operand_read(&r);
+	m.val = r.val;
+	operand_write(&m);
+	r.addr = REG_EDX;
+	cpu.esp -= 4;
+	m.addr = cpu.esp;
+	operand_read(&r);
+	m.val = r.val;
+	operand_write(&m);
+	r.addr = REG_EBX;
+	cpu.esp -= 4;
+	m.addr = cpu.esp;
+	operand_read(&r);
+	m.val = r.val;
+	operand_write(&m);
+	cpu.esp -= 4;
+	m.addr = cpu.esp;
+	m.val = temp;
+	operand_write(&m);
+	r.addr = REG_EBP;
+	cpu.esp -= 4;
+	m.addr = cpu.esp;
+	operand_read(&r);
+	m.val = r.val;
+	operand_write(&m);
+	r.addr = REG_ESI;
+	cpu.esp -= 4;
+	m.addr = cpu.esp;
+	operand_read(&r);
+	m.val = r.val;
+	operand_write(&m);
+	r.addr = REG_EDI;
+	cpu.esp -= 4;
+	m.addr = cpu.esp;
+	operand_read(&r);
+	m.val = r.val;
+	operand_write(&m);
+	print_asm_0("pusha","",1);
+	return 1;
+}
