@@ -8,7 +8,7 @@ void raise_intr(uint8_t intr_no) {
 	GateDesc gate;
 	printf("%x %x\n",cpu.idtr.base,cpu.idtr.limit);
 	uint32_t index = intr_no;
-	printf("%x\n",index) * 8;
+	printf("%x\n",index* 8);
 	memcpy(&gate, hw_mem + cpu.idtr.base + index * 8, 8);
 	cpu.esp -= 4;
 	OPERAND temp;
