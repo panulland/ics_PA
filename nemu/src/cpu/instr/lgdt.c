@@ -8,7 +8,5 @@ make_instr_func(lgdt) {
     operand_read(&opr_src);
     printf("%x %x %x\n",opr_src.val,opr_src.mem_addr.base,opr_src.mem_addr.disp);
     print_asm_1("lgdt","",len + 1,&opr_src);
-    cpu.gdtr.base=opr_src.val << 16 >> 16;
-    cpu.gdtr.limit=opr_src.val >> 32;
     return len; 
 }
