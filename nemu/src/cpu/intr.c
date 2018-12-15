@@ -6,7 +6,7 @@
 void raise_intr(uint8_t intr_no) {
 #ifdef IA32_INTR
 	GateDesc gate;
-	memcpy(&gate, cpu.idtr.base + intr_no * 8, 8);
+	memcpy(&gate, hw_mem + cpu.idtr.base + intr_no * 8, 8);
 	cpu.esp -= 4;
 	OPERAND temp;
 	temp.data_size = data_size;
