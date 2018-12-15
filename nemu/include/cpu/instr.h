@@ -49,6 +49,7 @@ extern uint8_t data_size;
 #include "cpu/instr/stos.h"
 #include "cpu/instr/cmps.h"
 #include "cpu/instr/lgdt.h"
+#include "cpu/instr/if.h"
 
 /* TODO: add more instructions here */
 
