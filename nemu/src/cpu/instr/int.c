@@ -12,3 +12,7 @@ make_instr_func(int_) {
     raise_sw_intr(i.val);
     return 2;
 }
+
+make_instr_func(iret) {
+    
+}
