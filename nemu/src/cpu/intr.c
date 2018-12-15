@@ -9,9 +9,6 @@ void raise_intr(uint8_t intr_no) {
 	printf("%x %x\n",cpu.idtr.base,cpu.idtr.limit);
 	uint32_t index = intr_no;
 	memcpy(&gate, hw_mem + cpu.idtr.base + index * 8, 8);
-	assert(0);
-	printf("%x %x\n",gate.val[0],gate.val[1]);
-	assert(0);
 	cpu.esp -= 4;
 	OPERAND temp;
 	temp.data_size = data_size;
@@ -20,6 +17,7 @@ void raise_intr(uint8_t intr_no) {
 	temp.val = cpu.eflags.val;
 	temp.addr = cpu.esp;
 	operand_write(&temp);
+	assert(0);
 	cpu.esp -= 4;
 	temp.addr = cpu.esp;
 	temp.val = cpu.cs.val;
