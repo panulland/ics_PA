@@ -26,8 +26,6 @@ void raise_intr(uint8_t intr_no) {
 	temp.val = cpu.eip;
 	operand_write(&temp);
 	cpu.eip = gate.offset_15_0 + (gate.offset_31_16 << 16);
-	printf("%x\n",cpu.eip);
-	assert(0);
 #endif
 }
 
