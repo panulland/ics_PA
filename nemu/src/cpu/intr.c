@@ -25,6 +25,9 @@ void raise_intr(uint8_t intr_no) {
 	temp.addr = cpu.esp;
 	temp.val = cpu.eip;
 	operand_write(&temp);
+	if(gate.type == 0xe) {
+		cpu.eflags.IF = 0;
+	}
 	cpu.eip = gate.offset_15_0 + (gate.offset_31_16 << 16);
 #endif
 }
