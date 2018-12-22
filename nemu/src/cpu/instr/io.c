@@ -30,3 +30,31 @@ make_instr_func(in_v) {
     operand_write(&r);
     return 1;
 }
+
+make_instr_func(out_b) {
+    OPERAND r,dx;
+    r.data_size = 8;
+    dx.data_size = 16;
+    r.type = dx.type = OPR_REG;
+    r.addr = REG_AL;
+    dx.addr = REG_DX;
+    operand_read(&r);
+    operand_read(&dx);
+    pio_write(dx.val, 1, r.val);
+    print_asm_1("out","",1,&dx);
+    return 1;
+}
+
+make_instr_func(out_v) {
+    OPERAND r,dx;
+    r.data_size = data_size;
+    dx.data_size = 16;
+    r.type = dx.type = OPR_REG;
+    r.addr = REG_EAX;
+    dx.addr = REG_DX;
+    operand_read(&r);
+    operand_read(&dx);
+    pio_write(dx.val, data_size / 8, r.val);
+    print_asm_1("out","",1,&dx);
+    return 1;
+}
