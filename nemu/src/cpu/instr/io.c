@@ -11,6 +11,6 @@ make_instr_func(in_b) {
     operand_read(&dx);
     al.val = pio_read(dx.val,1);
     operand_write(&al);
-    print_asm_0("in","",&dx);
+    print_asm_1("in","",1,&dx);
     return 1;
 }
