@@ -3,7 +3,8 @@
 
 make_instr_func(in_b) {
     OPERAND al,dx;
-    al.data_size = dx.data_size = 8;
+    al.data_size = 8;
+    dx.data_size = 16;
     al.type = OPR_REG;
     dx.type = OPR_REG;
     al.addr = REG_AL;
