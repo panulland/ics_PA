@@ -1,4 +1,5 @@
 #include "cpu/instr.h"
+#include "device/port_io.h"
 
 make_instr_func(in_b) {
     OPERAND al,dx;
@@ -10,6 +11,6 @@ make_instr_func(in_b) {
     operand_read(&dx);
     al.val = pio_read(dx.val,1);
     operand_write(&al);
-    print_asm0("in","",&dx);
+    print_asm_0("in","",&dx);
     return 1;
 }
