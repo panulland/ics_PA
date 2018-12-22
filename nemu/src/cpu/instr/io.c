@@ -17,16 +17,16 @@ make_instr_func(in_b) {
 }
 
 make_instr_func(in_v) {
-    OPERAND al,dx;
-    al.data_size = 8;
+    OPERAND r,dx;
+    r.data_size = data_size;
     dx.data_size = 16;
-    al.type = OPR_REG;
+    r.type = OPR_REG;
     dx.type = OPR_REG;
-    al.addr = REG_AL;
+    r.addr = REG_EAX;
     dx.addr = REG_DX;
     operand_read(&dx);
     print_asm_1("in","",1,&dx);
-    al.val = pio_read(dx.val,1);
-    operand_write(&al);
+    r.val = pio_read(dx.val,data_size / 8);
+    operand_write(&r);
     return 1;
 }
