@@ -21,6 +21,8 @@ paddr_t page_translate(laddr_t laddr) {
 	if(pte.present == 0)
 	printf("%x\n",laddr);
 	assert(pte.present == 1);
+	if(laddr > 0xa0000 && laddr < 0xa0000+320*200)
+	printf("%x\n",laddr);
 	return (pte.page_frame << 12) + offset;
 #else	
 	return tlb_read(laddr) | (laddr & PAGE_MASK);;
