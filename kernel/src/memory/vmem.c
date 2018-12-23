@@ -21,7 +21,7 @@ void create_video_mapping() {
 	//panic("please implement me");
 	PDE *pdir = get_updir();
 	pdir->present = 1;
-	PTE *ptable = (PTE *)(pdir->page_frame << 12);
+	PTE *ptable = (PTE *)va_to_pa(pdir->page_frame << 12);
 	//uint32_t frame = pdir -> page_frame << 12;
 	for(uint32_t i = 0; i < NR_PT; i++) {
 		uint32_t page = 0xa0 + i;
