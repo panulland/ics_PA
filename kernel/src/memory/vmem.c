@@ -19,13 +19,15 @@ void create_video_mapping() {
 
 	//panic("please implement me");
 	PDE* pde;
-	pde = get_updir;
-	pde.present = 1;
+	pde = get_updir();
+	pde->present = 1;
 	for(int i = 0; i < SCR_SIZE; i++) {
 		uint32_t addr = VMEM_ADDR + i;
-		PDE *pde;
+		uint32_t page = addr << 10 >> 22;
+		uint32_t offset = addr << 20 >> 20;
 		PTE *pte;
-	
+		pte = pde->page_frame << 12 + page * 4;
+		pte->present = 1;
 	}
 }
 
