@@ -27,7 +27,7 @@ void create_video_mapping() {
 		PTE* pte;
 		pte = ptable + page;
 		pte->present = 1;
-		pte->page_frame = page;
+		pte->page_frame = page & 0xfffff;
 	}
 }
 
