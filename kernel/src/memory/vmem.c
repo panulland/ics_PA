@@ -26,7 +26,7 @@ void create_video_mapping() {
 	for(uint32_t i = 0; i < NR_PT; i++) {
 		uint32_t page = 0xa0 + i;
 		PTE* pte;
-		pte = ptable + page;
+		pte = ptable + page*4;
 		pte->present = 1;
 		pte->page_frame = page;
 	}
