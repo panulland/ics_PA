@@ -26,7 +26,7 @@ void create_video_mapping() {
 		uint32_t page = addr << 10 >> 22;
 		uint32_t offset = addr << 20 >> 20;
 		PTE *pte;
-		pte = pde->page_frame << 12 + page * 4;
+		pte = (pde->page_frame << 12) + page;
 		pte->present = 1;
 	}
 }
