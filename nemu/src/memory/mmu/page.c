@@ -9,6 +9,8 @@ paddr_t page_translate(laddr_t laddr) {
 	uint32_t dir = laddr >> 22 & 0x3ff;
 	uint32_t page = laddr << 10 >> 22;
 	uint32_t offset = laddr << 20 >> 20;
+	if(dir*4>0x3ff)
+		printf("==========%x\n",laddr);
 	PDE pde;
 	PTE pte;
 	pde.val = paddr_read((cpu.cr3.pdbr << 12) + dir * 4, 4);
