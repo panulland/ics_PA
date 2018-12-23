@@ -29,7 +29,7 @@ void create_video_mapping() {
 		PTE* pte;
 		pte = ptable + (pdir->page_frame << 12) + page;
 		pte->present = 1;
-		pte->page_frame = page; 
+		pte->page_frame = addr >> 20;
 	}
 }
 
