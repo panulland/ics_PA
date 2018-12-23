@@ -2,6 +2,7 @@
 #define __MEMORY_H__
 
 #include "common.h"
+#include "x86.h"
 
 #ifdef IA32_PAGE
 #define KOFFSET 0xC0000000
