@@ -2,6 +2,7 @@
 #include "memory.h"
 #include "x86/memory.h"
 #include <string.h>
+#include <stdio.h>
 
 #define VMEM_ADDR 0xa0000
 #define SCR_SIZE (320 * 200)
