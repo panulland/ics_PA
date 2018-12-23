@@ -22,7 +22,7 @@ void create_video_mapping() {
 	//panic("please implement me");
 	PDE *pdir = (PDE *)va_to_pa(kpdir);
 	PTE *ptable = (PTE *)va_to_pa(kptable);
-	pdir -> present = 1;
+	pdir->present = 1;
 	for(int i = 0; i < SCR_SIZE; i++) {
 		uint32_t addr = VMEM_ADDR + i;
 		uint32_t page = addr << 10 >> 22;
