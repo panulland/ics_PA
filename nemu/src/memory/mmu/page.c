@@ -24,7 +24,7 @@ paddr_t page_translate(laddr_t laddr) {
 	{
 		printf("%x %x %x\n",pde.val, pte.val, laddr);
 	}
-	if(laddr == 0xa0000+200*200) {
+	if(laddr == 0xa0000+320*200-1) {
 		printf("=========\n");
 	}
 	assert(pte.present == 1);
