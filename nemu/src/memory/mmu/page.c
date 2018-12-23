@@ -22,9 +22,9 @@ paddr_t page_translate(laddr_t laddr) {
 	//memcpy(&pte.val, hw_mem + ((pde.page_frame << 12) + page * 4), 4);
 	if(pte.present == 0)
 	{
-		printf("%x %x\n",pte.val, laddr);
+		printf("%x %x %x\n",pde.val, pte.val, laddr);
 	}
-	if(laddr == 0xa0000+320*200) {
+	if(laddr == 0xa0000+200*200) {
 		printf("=========\n");
 	}
 	assert(pte.present == 1);
