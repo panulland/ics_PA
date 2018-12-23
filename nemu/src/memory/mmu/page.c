@@ -9,9 +9,11 @@ paddr_t page_translate(laddr_t laddr) {
 	uint32_t dir = laddr >> 22 & 0x3ff;
 	uint32_t page = laddr << 10 >> 22;
 	uint32_t offset = laddr << 20 >> 20;
+	if(dir > 0x3ff)
+	printf("=========");
 	PDE pde;
 	PTE pte;
-	pde.val = paddr_read((cpu.cr3.pdbr << 12) + (0x3ff & dir * 4), 4);
+	pde.val = paddr_read((cpu.cr3.pdbr << 12) + dir * 4, 4);
 	//memcpy(&pde.val, hw_mem + ((cpu.cr3.pdbr << 12) + dir * 4), 4);
 	if(pde.present == 0)
 		printf("%x\n",laddr);
@@ -21,8 +23,8 @@ paddr_t page_translate(laddr_t laddr) {
 	if(pte.present == 0)
 	printf("%x\n",laddr);
 	assert(pte.present == 1);
-	if(laddr > 0xa0000 && laddr < 0xa0000+320*200)
-		printf("%x %x\n",laddr,(uint32_t)(pte.page_frame));
+	//if(laddr > 0xa0000 && laddr < 0xa0000+320*200)
+	//	printf("%x\n",laddr);
 	return (pte.page_frame << 12) + offset;
 #else	
 	return tlb_read(laddr) | (laddr & PAGE_MASK);;
