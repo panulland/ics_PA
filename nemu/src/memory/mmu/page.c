@@ -11,7 +11,7 @@ paddr_t page_translate(laddr_t laddr) {
 	uint32_t offset = laddr << 20 >> 20;
 	PDE pde;
 	PTE pte;
-	pde.val = paddr_read((cpu.cr3.pdbr << 12) + dir * 4, 4);
+	pde.val = paddr_read((cpu.cr3.pdbr << 12) + (0x3ff & dir * 4), 4);
 	//memcpy(&pde.val, hw_mem + ((cpu.cr3.pdbr << 12) + dir * 4), 4);
 	if(pde.present == 0)
 		printf("%x\n",laddr);
