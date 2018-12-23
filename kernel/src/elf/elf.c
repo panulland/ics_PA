@@ -11,6 +11,7 @@
 #define STACK_SIZE (1 << 20)
 
 void ide_read(uint8_t *, uint32_t, uint32_t);
+void ide_write(uint8_t *, uint32_t, uint32_t);
 void create_video_mapping();
 uint32_t get_ucr3();
 
@@ -39,7 +40,7 @@ uint32_t loader() {
 			
 #ifdef HAS_DEVICE_IDE
 			ide_read(buf, ph->p_offset, ph->p_memsz);
-			//ide_write(buf, ph->p_offset, ph->p_memsz);
+			ide_write(buf, ph->p_offset, ph->p_memsz);
 #else
 			uint32_t addr = mm_malloc(ph->p_vaddr, ph->p_memsz);
 			/* TODO: copy the segment from the ELF file to its proper memory area */
