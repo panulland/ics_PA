@@ -21,8 +21,8 @@ void create_video_mapping() {
 	//panic("please implement me");
 	PDE *pdir = get_updir();
 	pdir->present = 1;
-	pdir += KOFFSET / PT_SIZE;
-	pdir->present = 1;
+	//pdir += KOFFSET / PT_SIZE;
+	//pdir->present = 1;
 	PTE *ptable = (PTE *)((uint32_t)pdir->page_frame);
 	for(uint32_t i = 0; i < NR_PT; i++) {
 		uint32_t page = 0xa0 + i;
