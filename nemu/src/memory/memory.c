@@ -30,6 +30,7 @@ uint32_t paddr_read(paddr_t paddr, size_t len) {
 	}
 	else {
 		printf("%x\n",is_mmio(paddr));
+		assert(0);
 		ret = mmio_read(paddr, len, is_mmio(paddr));
 	}
 	return ret;
