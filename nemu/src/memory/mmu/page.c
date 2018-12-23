@@ -13,6 +13,7 @@ paddr_t page_translate(laddr_t laddr) {
 	PTE pte;
 	pde.val = paddr_read((cpu.cr3.pdbr << 12) + dir * 4, 4);
 	//memcpy(&pde.val, hw_mem + ((cpu.cr3.pdbr << 12) + dir * 4), 4);
+	assert(laddr != 0xa0000);
 	if(pde.present == 0)
 	{
 		printf("%x %x\n",pde.val, laddr);
