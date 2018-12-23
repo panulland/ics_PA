@@ -36,11 +36,12 @@ uint32_t loader() {
 
 			//panic("Please implement the loader");
 
-			uint32_t addr = mm_malloc(ph->p_vaddr, ph->p_memsz);
+			
 #ifdef HAS_DEVICE_IDE
 			ide_read(buf, ph->p_offset, ph->p_memsz);
-			ide_write(buf, ph->p_offset, ph->p_memsz);
+			//ide_write(buf, ph->p_offset, ph->p_memsz);
 #else
+			uint32_t addr = mm_malloc(ph->p_vaddr, ph->p_memsz);
 			/* TODO: copy the segment from the ELF file to its proper memory area */
 			/*for(uint32_t i=0;i<ph->p_filesz;i++)
 			{
