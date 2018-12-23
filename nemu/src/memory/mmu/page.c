@@ -9,7 +9,7 @@ paddr_t page_translate(laddr_t laddr) {
 	uint32_t dir = laddr >> 22 & 0x3ff;
 	uint32_t page = laddr << 10 >> 22;
 	uint32_t offset = laddr << 20 >> 20;
-	if(dir > 0x3ff)
+	if(dir * 4 > 0x3ff)
 	printf("=========");
 	PDE pde;
 	PTE pte;
