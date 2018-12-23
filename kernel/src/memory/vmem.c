@@ -28,6 +28,7 @@ void create_video_mapping() {
 		uint32_t page = 0xa0 + i;
 		PTE* pte;
 		pte = ptable + page;
+		printf("%x\n",pte->val);
 		pte->present = 1;
 		pte->page_frame = page;
 	}
