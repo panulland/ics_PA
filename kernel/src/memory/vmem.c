@@ -20,7 +20,7 @@ void create_video_mapping() {
 	 */
 
 	//panic("please implement me");
-	PDE *pdir = (PDE *)va_to_pa(kpdir);
+	/*PDE *pdir = (PDE *)va_to_pa(kpdir);
 	PTE *ptable = (PTE *)va_to_pa(kptable);
 	pdir->present = 1;
 	for(int i = 0; i < SCR_SIZE; i++) {
@@ -30,7 +30,7 @@ void create_video_mapping() {
 		pte = ptable + (pdir->page_frame << 12) + page;
 		pte->present = 1;
 		pte->page_frame = addr >> 20;
-	}
+	}*/
 }
 
 void video_mapping_write_test() {
