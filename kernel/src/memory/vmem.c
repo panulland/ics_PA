@@ -1,5 +1,6 @@
 #include "common.h"
 #include "memory.h"
+#include "x86.h"
 #include <string.h>
 
 #define VMEM_ADDR 0xa0000
