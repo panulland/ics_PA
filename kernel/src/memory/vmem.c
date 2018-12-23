@@ -5,7 +5,7 @@
 
 #define VMEM_ADDR 0xa0000
 #define SCR_SIZE (320 * 200)
-#define NR_PT ((SCR_SIZE + PT_SIZE - 1) / PT_SIZE)  // number of page tables to cover the vmem
+#define NR_PT ((SCR_SIZE + PTE_SIZE - 1) / PTE_SIZE)  // number of page tables to cover the vmem
 
 
 PDE* get_updir();
