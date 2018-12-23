@@ -26,7 +26,7 @@ paddr_t page_translate(laddr_t laddr) {
 	}
 	assert(pte.present == 1);
 	if(laddr == 0xa0000) {
-		printf("%x %x\n",pde.val,pte.val);
+		printf("%x %x\n",pte.page_frame,pte.val);
 	}
 	return (pte.page_frame << 12) + offset;
 #else	
