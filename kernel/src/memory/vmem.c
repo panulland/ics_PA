@@ -23,13 +23,12 @@ void create_video_mapping() {
 	PDE *pdir = (PDE *)va_to_pa(kpdir);
 	PTE *ptable = (PTE *)va_to_pa(kptable);
 	pdir->present = 1;
-	for(int i = 0; i < SCR_SIZE; i++) {
-		uint32_t addr = VMEM_ADDR + i;
-		uint32_t page = addr << 10 >> 22;
+	for(uint32_t i = 0; i < NR_PT; i++) {
+		uint32_t page = 0xa0 + i;
 		PTE* pte;
 		pte = ptable + (pdir->page_frame << 12) + page;
 		pte->present = 1;
-		pte->page_frame = addr >> 20;
+		pte->page_frame = page;
 	}
 }
 
