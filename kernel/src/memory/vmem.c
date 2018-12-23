@@ -17,8 +17,8 @@ void create_video_mapping() {
 	 */
 
 	//panic("please implement me");
-	PDE pde;
-	pde = kpdir[0];
+	PDE* pde;
+	pde = get_updir;
 	pde.present = 1;
 	for(int i = 0; i < SCR_SIZE; i++) {
 		uint32_t addr = VMEM_ADDR + i;
