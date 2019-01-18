@@ -46,6 +46,7 @@ int fs_open(const char *pathname, int flags) {
 	Log("%d\n",sizeof(file_table));
 	assert(0);
 	for(int i=0;strcmp(file_table[i].name,pathname)&&i<sizeof(file_table);i++);
+	return -1;
 }
 
 size_t fs_read(int fd, void *buf, size_t len) {
