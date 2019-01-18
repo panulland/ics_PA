@@ -77,6 +77,7 @@ process_keys(void (*key_press_callback)(int), void (*key_release_callback)(int))
 			res = true;
 		}
 	}
+	assert(0);
 	sti();
 	return res;
 }
