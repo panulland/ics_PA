@@ -53,7 +53,7 @@ size_t fs_read(int fd, void *buf, size_t len) {
 	assert(fd > 2);
 	//panic("Please implement fs_read at fs.c");
 	//return -1;
-	return buf + files[fd].offset;
+	return files[fd].index;
 }
 
 size_t fs_write(int fd, void *buf, size_t len) {
