@@ -87,5 +87,6 @@ int fs_close(int fd) {
 	//panic("Please implement fs_close at fs.c");
 	//return -1;
 	files[fd].used = false;
+	files[fd].offset = 0;
 	return 0;
 }
