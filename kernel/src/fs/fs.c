@@ -53,7 +53,8 @@ size_t fs_read(int fd, void *buf, size_t len) {
 	assert(fd > 2);
 	//panic("Please implement fs_read at fs.c");
 	//return -1;
-	return files[fd].index;
+	ide_read(buf, file_table[fd - 3].disk_offset + files[fd].offset, len);
+	return 0;
 }
 
 size_t fs_write(int fd, void *buf, size_t len) {
@@ -72,13 +73,19 @@ size_t fs_write(int fd, void *buf, size_t len) {
 }
 
 off_t fs_lseek(int fd, off_t offset, int whence) {
-	panic("Please implement fs_lseek at fs.c");
-	return -1;
+	//panic("Please implement fs_lseek at fs.c");
+	//return -1;
+	switch(whence){
+		case SEEK_SET: files[fd].offset = offset;
+		case SEEK_CUR: files[fd].offset += offset;
+		case SEEK_END: files[fd].offset = file_table[fd - 3].size + offset;
+	}
+	return files[fd].offset;
 }
 
 int fs_close(int fd) {
 	//panic("Please implement fs_close at fs.c");
 	//return -1;
 	files[fd].used = false;
-	return fd;
+	return 0;
 }
