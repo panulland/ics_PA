@@ -60,7 +60,7 @@ size_t fs_read(int fd, void *buf, size_t len) {
 	Log("%d %d\n",fd, len);
 	ide_read(buf, files[fd].index + files[fd].offset, len);
 	files[fd].offset += len;
-	return 0;
+	return len;
 }
 
 size_t fs_write(int fd, void *buf, size_t len) {
