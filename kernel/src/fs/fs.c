@@ -51,8 +51,9 @@ int fs_open(const char *pathname, int flags) {
 
 size_t fs_read(int fd, void *buf, size_t len) {
 	assert(fd > 2);
-	panic("Please implement fs_read at fs.c");
-	return -1;
+	//panic("Please implement fs_read at fs.c");
+	//return -1;
+	return buf + file[id].offset;
 }
 
 size_t fs_write(int fd, void *buf, size_t len) {
