@@ -46,6 +46,7 @@ int fs_open(const char *pathname, int flags) {
 	int res;
 	for(res = 0; strcmp(file_table[res].name, pathname) && res < NR_FILES;res++);
 	assert(res < NR_FILES);
+	Log("%d\n",res);
 	res += 3;
 	files[res].used = true;
 	files[res].index = file_table[res - 3].disk_offset;
