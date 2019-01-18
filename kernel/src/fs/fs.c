@@ -43,9 +43,9 @@ void ide_write(uint8_t *, uint32_t, uint32_t);
 int fs_open(const char *pathname, int flags) {
 	//panic("Please implement fs_open at fs.c");
 	//return -1;
-	Log("%d\n",sizeof(file_table));
+	Log("%d\n",(sizeof(file_table)/sizeof(file_info));
 	assert(0);
-	for(int i=0;strcmp(file_table[i].name,pathname)&&i<sizeof(file_table);i++);
+	for(int i=0;strcmp(file_table[i].name,pathname)&&i<(sizeof(file_table)/sizeof(file_info));i++);
 	return -1;
 }
 
