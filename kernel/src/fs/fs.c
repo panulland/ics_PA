@@ -73,7 +73,7 @@ size_t fs_write(int fd, void *buf, size_t len) {
 }
 
 off_t fs_lseek(int fd, off_t offset, int whence) {
-	//panic("Please implement fs_lseek at fs.c");
+	panic("Please implement fs_lseek at fs.c");
 	//return -1;
 	switch(whence){
 		case SEEK_SET: files[fd].offset = offset;
