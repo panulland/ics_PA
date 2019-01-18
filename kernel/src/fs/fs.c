@@ -43,8 +43,8 @@ void ide_write(uint8_t *, uint32_t, uint32_t);
 int fs_open(const char *pathname, int flags) {
 	//panic("Please implement fs_open at fs.c");
 	//return -1;
-	int res=0;
-	for(res; strcmp(file_table[res].name, pathname) && res < NR_FILES;res++);
+	int res;
+	for(res = 0; strcmp(file_table[res].name, pathname) && res < NR_FILES;res++);
 	assert(res < NR_FILES);
 	return res + 3;
 }
