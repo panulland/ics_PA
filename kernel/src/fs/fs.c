@@ -44,7 +44,7 @@ int fs_open(const char *pathname, int flags) {
 	//panic("Please implement fs_open at fs.c");
 	//return -1;
 	int res=0;
-	for(int i=0;strcmp(file_table[i].name,pathname) && i < NR_FILES;i++);
+	for(int i=0; strcmp(file_table[i].name, pathname) && i < NR_FILES;i++);
 	assert(res < NR_FILES);
 	return res + 3;
 }
