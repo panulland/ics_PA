@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-int get_fps();zzzzzz
+int get_fps();
 
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, 
 		SDL_Surface *dst, SDL_Rect *dstrect) {
