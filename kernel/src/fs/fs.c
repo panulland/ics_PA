@@ -87,12 +87,18 @@ off_t fs_lseek(int fd, off_t offset, int whence) {
 	//panic("Please implement fs_lseek at fs.c");
 	//return -1;
 	switch(whence){
-		case SEEK_SET: files[fd].offset = offset;
+		case SEEK_SET: 
+			if(offset >= file_table[fd - 3].size)
+				files[fd].offset = file_table[fd - 3].size - 1;
+			else
+				files[fd].offset = offset;
+			break;
 		case SEEK_CUR: 
 			if(files[fd].offset + offset >= file_table[fd - 3].size)
 				files[fd].offset = file_table[fd - 3].size - 1;
 			else
 				files[fd].offset += offset;
+			break;
 		case SEEK_END: files[fd].offset = file_table[fd - 3].size - 1 + offset;
 	}
 	return files[fd].offset;
