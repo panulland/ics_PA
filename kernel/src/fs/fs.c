@@ -58,6 +58,8 @@ size_t fs_read(int fd, void *buf, size_t len) {
 	//panic("Please implement fs_read at fs.c");
 	//return -1;
 	Log("%d\n",fd);
+	if(files[fd].offset + len >= file_table[fd - 3].size)
+		len = (file_table[fd - 3].size - files[fd].offset - 1);
 	ide_read(buf, files[fd].index + files[fd].offset, len);
 	files[fd].offset += len;
 	return len;
