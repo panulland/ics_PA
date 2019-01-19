@@ -57,7 +57,7 @@ size_t fs_read(int fd, void *buf, size_t len) {
 	assert(fd > 2);
 	//panic("Please implement fs_read at fs.c");
 	//return -1;
-	Log("%d %d %d\n",fd, len, files[fd].offset);
+	Log("%d %d %d %d\n",fd, len, files[fd].offset, file_table[fd - 3].size);
 	if(files[fd].offset + len >= file_table[fd - 3].size)
 		len = file_table[fd - 3].size - files[fd].offset - 1;
 	Log("%d %d\n",fd, len);
